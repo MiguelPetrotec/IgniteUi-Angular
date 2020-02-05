@@ -1,19 +1,28 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IgxNavigationDrawerModule, IgxNavbarModule, IgxLayoutModule, IgxRippleModule, IgxGridModule, IgxCheckboxModule, IgxInputGroupModule, IgxIconModule, IgxButtonModule, IgxComboModule, IgxDatePickerModule, IgxTimePickerModule, IgxSelectModule, IgxDropDownModule, IgxToggleModule } from 'igniteui-angular';
-
+import { TranslateModule } from '@ngx-translate/core';
+import { IgxButtonModule, IgxCheckboxModule, IgxComboModule, IgxDatePickerModule, IgxDropDownModule, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxLayoutModule, IgxNavbarModule, IgxNavigationDrawerModule, IgxRippleModule, IgxSelectModule, IgxTimePickerModule, IgxToggleModule } from 'igniteui-angular';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { Grid1Component } from './grid1/grid1.component';
-import { LoginComponent } from './login/login.component';
-import { InputGroupComponent } from './inputgroup/inputgroup.component';
 import { DropDownComponent } from './dropdown/dropdown.component';
+import { Grid1Component } from './grid1/grid1.component';
+import { HomeComponent } from './home/home.component';
+import { InputGroupComponent } from './inputgroup/inputgroup.component';
+import { LanguageTranslationModule } from './language-translation/language-translation.module';
+import { LoginComponent } from './login/login.component';
+import { NgxFlagIconCssModule } from 'ngx-flag-icon-css';
+import { registerLocaleData } from '@angular/common';
+import localePtPt from '@angular/common/locales/pt-PT';
+
+
+
+registerLocaleData(localePtPt);
 
 @NgModule({
   declarations: [
+    
     AppComponent,
     HomeComponent,
     Grid1Component,
@@ -41,7 +50,10 @@ import { DropDownComponent } from './dropdown/dropdown.component';
     IgxTimePickerModule,
     IgxSelectModule,
     IgxDropDownModule,
-    IgxToggleModule
+    IgxToggleModule,
+    TranslateModule.forRoot(),
+    LanguageTranslationModule,
+    NgxFlagIconCssModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

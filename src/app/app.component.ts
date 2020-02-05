@@ -13,6 +13,9 @@ import { IgxNavigationDrawerComponent } from 'igniteui-angular';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  public darkTheme = false;
+  afAuth: any = { authState: { displayName: 'Teste' } };
   public topNavLinks: Array<{
     path: string,
     name: string
@@ -30,6 +33,20 @@ export class AppComponent implements OnInit {
     }
   }
 
+  public changeTheme(dark?: boolean) {
+    if (dark) {
+      this.darkTheme = true;
+      document.body.classList.remove('light-theme');
+      document.body.classList.add('dark-theme');
+      document.body.style.background = '#414141';
+    } else {
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
+      document.body.style.background = '#eee';
+      this.darkTheme = false;
+    }
+  }
+
   public ngOnInit(): void {
     this.router.events.pipe(
       filter((x) => x instanceof NavigationStart)
@@ -40,5 +57,15 @@ export class AppComponent implements OnInit {
               this.navdrawer.close();
           }
       });
+  }
+
+
+  private logout() {
+    // this.afAuth.auth.signOut();
+    this.router.navigateByUrl('/home');
+  }
+
+  private login() {
+    this.router.navigate(['/login']);
   }
 }

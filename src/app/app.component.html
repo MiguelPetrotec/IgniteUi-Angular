@@ -6,7 +6,27 @@
     </ng-template>
   </igx-nav-drawer>
   <div igxFlex igxLayout igxLayoutDir="columns">
-    <igx-navbar title="managementApp" actionButtonIcon="menu" (onAction)="nav.toggle()"></igx-navbar>
+    <igx-navbar title="managementApp" actionButtonIcon="menu" (onAction)="nav.toggle()">    
+      <div class="theme-chooser">
+        <div *ngIf="darkTheme" class="theme-chooser__item--light" (click)="this.changeTheme()" title="Light Theme">
+        </div>
+        <div *ngIf="!darkTheme" class="theme-chooser__item--dark" title="Dark Theme" (click)="this.changeTheme(true)">
+        </div>
+      </div>
+      <span>
+        <div class="account-container" *ngIf="afAuth.authState | async as user; else showLogin">
+          <!-- <span *ngIf="innerWidth > 650">Hey {{ user.displayName !== null ? user.displayName : ''}}!</span>COMENTADA -->
+          <span *ngIf="innerWidth > 650">Hey Teste !</span>
+          <span *ngIf="innerWidth < 650">Hey Teste !</span>
+             <!-- <span *ngIf="innerWidth < 650">Hey COMENTADA -->
+              <!-- {{ user.displayName !== null ? user.displayName.split(' ')[0] : '' }}!</span>  COMENTADA -->
+          <button igxButton="raised" igxRipple (click)="logout()">Logout</button>
+        </div>
+        <ng-template #showLogin>
+          <div><button igxButton="raised" igxRipple (click)="login()">Login</button></div>
+        </ng-template>
+      </span>
+    </igx-navbar>
     <div class="content" igxFlex>
       <router-outlet></router-outlet>
      </div>

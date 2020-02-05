@@ -1,0 +1,248 @@
+{
+    "SideMenu": {
+        "Dashboard": "Principal",
+        "UserManagement": "Utilizadores",
+        "SitesManagement": "Postos",
+        "NotifiablesManagement": "Notificáveis",
+        "LanguagesManagement": "Idiomas",
+        "SiteGroupManagement": "Grupos de Postos",
+        "CustomerPartyManagement": "Clientes", 
+        "SupplierPartyManagement": "Fornecedores",
+        "EmployeePartyManagement": "Funcionários",       
+        "Charts": "Gráficos",
+        "Tables": "Tabelas",
+        "Forms": "Formulários",
+        "Bootstrap Element": "Elementos Bootstrap",
+        "Bootstrap Grid": "Grellha Bootstrap",
+        "Component": "Componentes",
+        "Menu": "Menu",
+        "Submenu": "Submenu",
+        "Blank Page": "Página em Branco",
+        "More Themes": "Mais temas",
+        "Collapse Sidebar": "Colapsar barra lateral"
+    },
+    "Languages": {
+        "Language": "Idioma",
+        "English": "English",
+        "French": "French",
+        "Urdu": "Urdu",
+        "Spanish": "Espanol",
+        "Italian": "Italiano",
+        "Portuguese": "Português",
+        "Farsi": "Farsi",
+        "German": "Alemão",
+        "Simplified Chinese": "Chinês simplificado",
+        "Dev": "Modo Programador"
+    },
+    "Auth": {
+        "Register": "Registrar",
+        "Log in": "Entrar",
+        "Username": "Utilizador",
+        "Password": "Palavra-passe"
+    },
+    "User": {
+        "Full Name": "Nome Completo",
+        "Email": "Correio Electrónico",
+        "Repeat Password": "Repetir Palavra-passe",
+        "Username": "Utilizador",
+        "Password": "Palavra-passe"
+    },
+    "TopNav": {
+        "Download Now": "Descarregar Agora",
+        "Search": "Pesquisa",
+        "Settings": "Ajustes",
+        "Profile": "Perfil",
+        "Inbox": "Caixa de entrada",
+        "Log Out": "Terminar Sessão",
+        "Pending Task": "Tarefa pendente",
+        "In queue": "Em espera",
+        "Mail": "Email",
+        "View All": "Ver tudo",
+        "PasswordDialog": {
+            "ChangePass": "Mudar Palavra-passe",
+            "Cancel": "Cancelar",
+            "Submit": "Submeter",
+            "promptLabel": "Insira uma Palavra-passe",
+            "weakLabel": "Fraca",
+            "mediumLabel": "Média",
+            "strongLabel": "Forte",
+            "Title": "Para alterar sua palavra-passe, preencha e submeta os seguintes campos.",
+            "Fields": {
+                "CurrentPassword": "Palavra-passe actual",
+                "NewPassword": "Nova Palavra-passe",
+                "ConfirmPassword": "Confirmar Palavra-passe"
+            },
+            "Validations": {
+                "Required": "é obrigatório",
+                "PasswordMismatch": "Palavra-passe diferente",
+                "FieldMinLength6": "Tem que ter mais de 5 caractéres"
+            }
+        }
+    },
+    "UserManagement": {
+        "TableTitle": "Utilizadores",
+        "Details": "Detalhes Utilizador",
+        "Username": "Utilizador",
+        "Name": "Nome",
+        "Email": "Email",
+        "AlternativeEmail": "Email Alt.",
+        "Phone": "Contacto",
+        "AlternativePhone": "Contacto Alt.",
+        "Observations": "Observações",
+        "Enabled": "Activo",
+        "Profile": "Perfil",
+        "Locale": "Idioma padrão",
+        "Success": "Sucesso",
+        "Password": "Palavra-passe",
+        "PasswordChange": "Palavra-passe alterada com sucesso",
+        "StatusChange": "Estado(s) modificado",
+        "UserCreated": "Utilizador criado com sucesso",
+        "UserUpdated": "Utilizador modificado com sucessso",
+        "PasswordChangeFailed": "Mudança de Palavra-passe falhou",
+        "UserCreateFailed": "Criação utilizador falhou"
+    },
+    "SiteManagement": {
+        "TableTitle": "Postos",
+        "Details": "Detalhes Posto",
+        "RegionCode": "Região",
+        "Code": "Código",
+        "Description": "Descrição",
+        "Enabled": "Activo",
+        "Latitude": "Latitude",
+        "Longitude": "Longitude",
+        "Profile": "Perfil",
+        "SiteCreated": "Posto criado com sucesso",
+        "SiteUpdated": "Posto modificado com sucesso",
+        "SiteCreateFailed": "Criação Posto falhou"
+    },
+    "NotifiablesManagement": {
+        "TableTitle": "Notificáveis",
+        "Details": "Detalhes Notificáveis",
+        "Code": "Código",
+        "Entity": "Entidade",
+        "Locale": "Idioma",
+        "Severity": "Severidade",
+        "ContactType": "Tipo de Contacto",
+        "Enabled": "Activo",
+        "Created": "Criado",
+        "Updated": "Actualizado",
+        "AssociateSites": "Associar",
+        "Selected": "Selecionado",
+        "Description": "Descrição",
+        "NotifiableCreated": "Notificável criado com sucesso",
+        "NotifiableUpdated": "Notificável modificado com sucesso",
+        "NotifiableSuccess": "Notificável guardado com sucesso",
+        "NotifiableWarning": "Problemas ao guardar o Notificável",
+        "NotifiableSaveGroupError": "Não é possível salvar um grupo de postos sem nenhuma categoria de posto associada"
+    },
+    "SiteGroupManagement": {
+        "TableTitle": "Grupos de Postos",
+        "TableTitleItems": "Items de Grupo de Postos",
+        "SiteGroupDetails": "Detalhes Grupo de Postos",
+        "SiteGroupItemDetails": "Detalhes Item de Grupo de Postos",
+        "Description": "Descrição",
+        "NumberSites": "Nº de Postos",
+        "Entity": "Entidade",
+        "Created": "Criado",
+        "Updated": "Actualizado",
+        "Enabled": "Activo",
+        "AddSite": "Adicionar Posto",
+        "SiteGroupCreated": "Grupo de Postos criado com sucesso",
+        "SiteGroupUpdated": "Grupo de Postos modificado com sucesso",
+        "SiteGroupSuccess": "Grupo de Postos guardado com sucesso",
+        "SiteGroupWarning": "Problemas ao guardar o Grupo de Postos",
+        "SiteItem": "Categoria de Posto",
+        "Site": "Posto"
+    },
+    "LanguagesManagament": {
+        "TableTitle": "Idiomas",
+        "Namespace": "Namespace",
+        "Key": "Chave",
+        "TranslationIn": "Tradução em {{label}}",
+        "Insert": "Inserir {{label}}",
+        "Duplicate": "Duplicar"
+    },
+    "TableTemplate": {
+        "AddButton": "Adicionar",
+        "GlobalFilter": "Filtro",
+        "ExportButton": "Exportar",
+        "Dialog": {
+            "Back": "Voltar",
+            "Save": "Guardar",
+            "Details": "Detalhes"
+        },
+        "MenuItem": {
+            "View": "Detalhe",
+            "Disable": "Desactivar",
+            "Activate": "Activar",
+            "ChangePassword": "Mudar palavra-passe",
+            "DisabledMultiple": "Desativo devido a seleção multipla"
+        },
+        "ConfirmationDialog": {
+            "Title": "Confirmar",
+            "AcceptButton": "Sim",
+            "CancelButton": "Não",
+            "Message": "Tem a certeza que pretende realizar esta acção ?"
+        }
+    },
+    "TreeTableTemplate": {
+        "AddButton": "Adicionar",
+        "DeleteButton": "Apagar",
+        "GlobalFilter": "Filtro",
+        "ExportButton": "Exportar",
+        "HistoryButton": "Rever Modificações",
+        "Association": "Associação",
+        "Dissociation": "Dissociação",
+        "Dialog": {
+            "Back": "Voltar",
+            "Save": "Guardar",
+            "Details": "Detalhes",
+            "Discard": "Descartar"
+        },
+        "MenuItem": {
+            "View": "Detalhe",
+            "Disable": "Desactivar",
+            "Activate": "Activar"
+        },
+        "ConfirmationDialog": {
+            "Title": "Confirmar",
+            "AcceptButton": "Sim",
+            "CancelButton": "Não",
+            "Message": "Tem a certeza que pretende realizar esta acção ?"
+        },
+        "ReviewDialog": {
+            "Title": "Título",
+            "Action": "Ação",
+            "Changes": "Alterações",
+            "NewValue": "Novo Valor",
+            "OldValue": "Valor Antigo",
+            "LastModify": "Ultima Alteração",
+            "ChangeType": {
+                "Create": "Criar",
+                "Update": "Modificar",
+                "Delete": "Eliminar",
+                "Add": "Adicionar",
+                "Remove": "Remover"
+            }
+        }
+    },
+    "App": {
+        "Errors": {
+            "Error": "Erro",
+            "ErrorNoData": "Ocorreu um erro. Não foi possível obter os dados",
+            "NoDataFound": "A lista está vazia.",
+            "BadCredentials": "Credenciais Incorretas",
+            "WhiteSpaces": "Este campo não pode ser deixado em branco",
+            "EmailFormat": "Formato de email inválido"
+        },
+        "Loading": "Carregando...",
+        "Saving": "A Guardar...",
+        "Success": "Sucesso",
+        "Warning": "Aviso",
+        "true": "Verdadeiro",
+        "false": "Falso"
+    },
+    "DashBoard": {
+        "Greetings": "Bem vindo à aplicação gestora"
+    }
+}

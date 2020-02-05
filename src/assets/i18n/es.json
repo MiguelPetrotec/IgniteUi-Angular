@@ -1,0 +1,249 @@
+{
+    "SideMenu": {
+        "Dashboard": "Principal",
+        "UserManagement": "Usuarios",
+        "SitesManagement": "Postos",
+        "NotifiablesManagement": "Notifiables",
+        "LanguagesManagement": "Idiomas",
+        "SiteGroupManagement": "Grupos Postos",
+        "CustomerPartyManagement": "Clientes", 
+        "SupplierPartyManagement": "Proveedores",
+        "EmployeePartyManagement": "Empleados",  
+        "Charts": "Graficos",
+        "Tables": "Tablas",
+        "Forms": "Formularios",
+        "Bootstrap Element": "Elementos Bootstrap",
+        "Bootstrap Grid": "Rejilla Bootstrap",
+        "Component": "Componentes",
+        "Menu": "Menú",
+        "Submenu": "Submenú",
+        "Blank Page": "Página en Blanco",
+        "More Themes": "Más temas",
+        "Collapse Sidebar": "Contraer barra lateral"
+    },
+    "Languages": {
+        "Language": "Idioma",
+        "English": "English",
+        "French": "Francés",
+        "Urdu": "Urdu",
+        "Spanish": "Espanol",
+        "Italian": "Italiano",
+        "Portuguese": "Português",
+        "Farsi": "Farsi",
+        "German": "Alemán",
+        "Simplified Chinese": "Chino simplificado",
+        "Dev": "Modo de desarrollo"
+    },
+    "Auth": {
+        "Register": "Registrarse",
+        "Log in": "Entrar",
+        "Username": "Usuario",
+        "Password": "Contraseña"
+    },
+    "User": {
+        "Full Name": "Nombre Completo",
+        "Email": "Correo Electrónico",
+        "Repeat Password": "Repetir Contraseña",
+        "Username": "Usuario",
+        "Password": "Contraseña"
+    },
+    "TopNav": {
+        "Download Now": "Descarga Ahora",
+        "Search": "Búsqueda",
+        "Settings": "Ajustes",
+        "Profile": "Profile",
+        "Inbox": "Bandeja de entrada",
+        "Log Out": "Cerrar Sesión",
+        "Pending Task": "Tarea pendiente",
+        "In queue": "En cola",
+        "Mail": "Correo",
+        "View All": "Ver todo",
+        "PasswordDialog": {
+            "ChangePass": "Cambiar Contraseña",
+            "Cancel": "Cancelar",
+            "Submit": "Enviar",
+            "promptLabel": "Por favor ingrese una contraseña",
+            "weakLabel": "Debil",
+            "mediumLabel": "Medio",
+            "strongLabel": "Fuerte",
+            "Title": "Para cambiar su contraseña, complete y envíe los siguientes campos.",
+            "Fields": {
+                "CurrentPassword": "Contraseña actual",
+                "NewPassword": "Nueva contraseña",
+                "ConfirmPassword": "Confirmación de contraseña"
+            },
+            "Validations": {
+                "Required": "es requerido",
+                "PasswordMismatch": "Contraseña diferente",
+                "FieldMinLength6": "Debe tener más de 5 caracteres"
+            }
+        }
+    },
+    "UserManagement": {
+        "TableTitle": "Usuarios",
+        "Details": "Detalles Usuario",
+        "Username": "Usuario",
+        "Name": "Nombre",
+        "Email": "Email",
+        "AlternativeEmail": "Email Alternativo",
+        "Phone": "Contacto",
+        "AlternativePhone": "Contacto Alternativo",
+        "Observations": "Observaciones",
+        "Enabled": "Habilitado",
+        "Profile": "Perfil",
+        "Locale": "Idioma predeterminado",
+        "Success": "Exito",
+        "Password": "Contraseña",
+        "PasswordChange": "Contraseña cambiada exitosamente",
+        "StatusChange": "Estado(s) cambiado con éxito",
+        "UserCreated": "Usuario creado con éxito",
+        "UserUpdated": "Usuario cambiado con éxito",
+        "PasswordChangeFailed": "Cambio de contraseña falló",
+        "UserCreateFailed": "Creación de Usuario falló"
+    },
+    "SiteManagement": {
+        "TableTitle": "Sitios",
+        "Details": "Detalles Sitio",
+        "RegionCode": "Región",
+        "Code": "Código",
+        "Description": "Descripción",
+        "Enabled": "Habilitado",
+        "Latitude": "Latitud",
+        "Longitude": "Longitud",
+        "Profile": "Perfil",
+        "SiteCreated": "Sitio creado con éxito",
+        "SiteUpdated": "Sitio cambiado con éxito",
+        "PasswordChangeFailed": "Cambio de contraseña falló",
+        "SiteCreateFailed": "Creación Sitio falló"
+    },
+    "NotifiablesManagement": {
+        "TableTitle": "Notificables",
+        "Details": "Detalhes Notificable",
+        "Code": "Código",
+        "Entity": "Entidad",
+        "Locale": "Idioma",
+        "Severity": "Severidad",
+        "ContactType": "Tipo de Contacto",
+        "Enabled": "Habilitado",
+        "Created": "Creado",
+        "Updated": "Actualizado",
+        "AssociateSites": "Asociar",
+        "Selected": "Seleccionado",
+        "Description": "Descripción",
+        "NotifiableCreated": "Notificable creado con éxito",
+        "NotifiableUpdated": "Notificable cambiado con éxito",
+        "NotifiableSuccess": "Notificable guardado con éxito",
+        "NotifiableWarning": "Notificable con problemas al guardar",
+        "NotifiableSaveGroupError": "No se puede guardar un grupo de sitios sin ninguna categoría de sitios asociada"
+    },
+    "SiteGroupManagement": {
+        "TableTitle": "Grupos de Sitios",
+        "TableTitleItems": "Items de Grupo",
+        "SiteGroupDetails": "Detalles Group de Sitios",
+        "SiteGroupItemDetails": "Detalles Group de Sitios",
+        "Description": "Descripción",
+        "NumberSites": "Nº de Sitios",
+        "Entity": "Entidad",
+        "Created": "Creado",
+        "Updated": "Actualizado",
+        "Enabled": "Habilitado",
+        "AddSite": "Añadir Sitios",
+        "SiteGroupCreated": "Grupos de Sitios creado con éxito",
+        "SiteGroupUpdated": "Grupos de Sitios cambiado con éxito",
+        "SiteGroupSuccess": "Grupos de Sitios guardado con éxito",
+        "SiteGroupWarning": "Grupos de Sitios con problemas al guardar",
+        "SiteItem": "Categoria de Sitio",
+        "Site": "Sitios"
+    },
+    "LanguagesManagament": {
+        "TableTitle": "Idiomas",
+        "Namespace": "Namespace",
+        "Key": "Llave",
+        "TranslationIn": "Traducción en {{label}}",
+        "Insert": "Ingrese {{label}}",
+        "Duplicate": "Duplicar"
+    },
+    "TableTemplate": {
+        "AddButton": "Añadir",
+        "GlobalFilter": "Filtro",
+        "ExportButton": "Exportar",
+        "Dialog": {
+            "Back": "Volver",
+            "Save": "Guardar",
+            "Details": "Detalles"
+        },
+        "MenuItem": {
+            "View": "Detalle",
+            "Disable": "Deshabilitar",
+            "Activate": "Habilitar",
+            "ChangePassword": "Cambiar contraseña",
+            "DisabledMultiple": "Deshabilitar debido a la selección múltiple"
+        },
+        "ConfirmationDialog": {
+            "Title": "Confirmar",
+            "AcceptButton": "Sí",
+            "CancelButton": "No",
+            "Message": "¿Estás seguro de que quieres realizar esta acción?"
+        }
+    },
+    "TreeTableTemplate": {
+        "AddButton": "Añadir",
+        "DeleteButton": "Borrar",
+        "GlobalFilter": "Filtro",
+        "ExportButton": "Exportar",
+        "HistoryButton": "Revisar Cambios",
+        "Association": "Asociación",
+        "Dissociation": "Disociación",
+        "Dialog": {
+            "Back": "Volver",
+            "Save": "Guardar",
+            "Details": "Detalles",
+            "Discard": "Descartar"
+        },
+        "MenuItem": {
+            "View": "Detalle",
+            "Disable": "Deshabilitar",
+            "Activate": "Habilitar"
+        },
+        "ConfirmationDialog": {
+            "Title": "Confirmar",
+            "AcceptButton": "Sí",
+            "CancelButton": "No",
+            "Message": "¿Estás seguro de que quieres realizar esta acción?"
+        },
+        "ReviewDialog": {
+            "Title": "Título",
+            "Action": "Acción",
+            "Changes": "Cambios",
+            "NewValue": "Nuevo Valor",
+            "OldValue": "Valor Anterior",
+            "LastModify": "Última Modificación",
+            "ChangeType": {
+                "Create": "Crear",
+                "Update": "Actualización",
+                "Delete": "Eliminar",
+                "Add": "Agregar",
+                "Remove": "Eliminar"
+            }
+        }
+    },
+    "App": {
+        "Errors": {
+            "Error": "Error",
+            "ErrorNoData": "Se produjo un error. No se pudieron obtener datos",
+            "NoDataFound": "La lista está vacía.",
+            "BadCredentials": "Credenciales Malas",
+            "WhiteSpaces": "Este campo no puede dejarse en blanco",
+            "EmailFormat": "Formato de correo inválido"
+        },
+        "Loading": "Cargando...",
+        "Saving": "Guardar...",
+        "Success": "Exito",
+        "Warning": "Advertencia",
+        "true": "Verdadero",
+        "false": "Falso"
+    },
+    "DashBoard": {
+        "Greetings": "Bienvenido a la aplicación de gestión"
+    }
+}

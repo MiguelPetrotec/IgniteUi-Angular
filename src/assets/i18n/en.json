@@ -1,0 +1,248 @@
+{
+    "SideMenu": {
+        "Dashboard": "Dashboard",
+        "UserManagement": "Users",
+        "SitesManagement": "Sites",
+        "NotifiablesManagement": "Notifiables",
+        "LanguagesManagement": "Languages",
+        "SiteGroupManagement": "Site Groups",
+        "CustomerPartyManagement": "Customers", 
+        "SupplierPartyManagement": "Suppliers",
+        "EmployeePartyManagement": "Employees",  
+        "Charts": "Charts",
+        "Tables": "Tables",
+        "Forms": "Forms",
+        "Bootstrap Element": "Bootstrap Element",
+        "Bootstrap Grid": "Bootstrap Grid",
+        "Component": "Component",
+        "Menu": "Menu",
+        "Submenu": "Submenu",
+        "Blank Page": "Blank Page",
+        "More Themes": "More Themes",
+        "Collapse Sidebar": "Collapse Sidebar"
+    },
+    "Languages": {
+        "Language": "Language",
+        "English": "English",
+        "French": "French",
+        "Urdu": "Urdu",
+        "Spanish": "Espanol",
+        "Italian": "Italian",
+        "Portuguese": "Português",
+        "Farsi": "Farsi",
+        "German": "German",
+        "Simplified Chinese": "Simplified Chinese",
+        "Dev": "Development mode"
+    },
+    "Auth": {
+        "Register": "Register",
+        "Log in": "Log in",
+        "Username": "Username",
+        "Password": "Password"
+    },
+    "User": {
+        "Full Name": "Full Name",
+        "Email": "Email",
+        "Repeat Password": "Repeat Password",
+        "Username": "Username",
+        "Password": "Password"
+    },
+    "TopNav": {
+        "Download Now": "Download Now",
+        "Search": "Search",
+        "Settings": "Settings",
+        "Profile": "Profile",
+        "Inbox": "Inbox",
+        "Log Out": "Log Out",
+        "Pending Task": "Pending Task",
+        "In queue": "In queue",
+        "Mail": "Mail",
+        "View All": "View All",
+        "PasswordDialog": {
+            "ChangePass": "Change Password",
+            "Cancel": "Cancel",
+            "Submit": "Submit",
+            "promptLabel": "Please enter a password",
+            "weakLabel": "Weak",
+            "mediumLabel": "Medium",
+            "strongLabel": "Strong",
+            "Title": "To change your password, please complete and submit the following fields.",
+            "Fields": {
+                "CurrentPassword": "Current Password",
+                "NewPassword": "New Password",
+                "ConfirmPassword": "Confirm Password"
+            },
+            "Validations": {
+                "Required": "is required",
+                "PasswordMismatch": "Password Mismatch",
+                "FieldMinLength6": "Must be longer than 5 characters"
+            }
+        }
+    },
+    "UserManagement": {
+        "TableTitle": "Users",
+        "Details": "Users Details",
+        "Username": "Username",
+        "Name": "Name",
+        "Email": "Email",
+        "AlternativeEmail": "Alternative Email",
+        "Phone": "Phone",
+        "AlternativePhone": "Alternative Phone",
+        "Observations": "Observations",
+        "Enabled": "Enabled",
+        "Profile": "Profile",
+        "Locale": "Default Language",
+        "Success": "Success",
+        "Password": "Password",
+        "PasswordChange": "Password has been successfully updated",
+        "StatusChange": "State(s) modified with success",
+        "UserCreated": "User successfully created",
+        "UserUpdated": "User successfully updated",
+        "PasswordChangeFailed": "Password change failed",
+        "UserCreateFailed": "User creation failed"
+    },
+    "SiteManagement": {
+        "TableTitle": "Sites",
+        "Details": "Site Details",
+        "RegionCode": "Region",
+        "Code": "Code",
+        "Description": "Description",
+        "Enabled": "Enabled",
+        "Latitude": "Latitude",
+        "Longitude": "Longitude",
+        "Profile": "Profile",
+        "SiteCreated": "Site successfully created",
+        "SiteUpdated": "Site successfully updated",
+        "SiteCreateFailed": "Site creation failed"
+    },
+    "NotifiablesManagement": {
+        "TableTitle": "Notifiables",
+        "Details": "Notifiables Details",
+        "Code": "Code",
+        "Entity": "Entity",
+        "Locale": "Locale",
+        "Severity": "Severity",
+        "ContactType": "Contact Type",
+        "Enabled": "Enabled",
+        "Created": "Created",
+        "Updated": "Updated",
+        "AssociateSites": "Associate",
+        "Selected": "Selected",
+        "Description": "Description",
+        "NotifiableCreated": "Notifiable successfully created",
+        "NotifiableUpdated": "Notifiable successfully updated",
+        "NotifiableSuccess": "Notifiable successfully saved",
+        "NotifiableWarning": "Problems on saving Notifiable",
+        "NotifiableSaveGroupError": "Cannot save a Site Group without any Site Category associated"
+    },
+    "SiteGroupManagement": {
+        "TableTitle": "Site Groups",
+        "TableTitleItems": "Site Group Items",
+        "SiteGroupDetails": "Site Group Details",
+        "SiteGroupItemDetails": "Site Group Item Details",
+        "Description": "Description",
+        "NumberSites": "Nº of Sites",
+        "Entity": "Entity",
+        "Created": "Created",
+        "Updated": "Updated",
+        "Enabled": "Enabled",
+        "AddSite": "Add Site",
+        "SiteGroupCreated": "Site Group successfully created",
+        "SiteGroupUpdated": "Site Group successfully updated",
+        "SiteGroupSuccess": "Site Group successfully saved",
+        "SiteGroupWarning": "Problems on saving Site Group",
+        "SiteItem": "Site Category",
+        "Site": "Site"
+    },
+    "LanguagesManagament": {
+        "TableTitle": "Languages",
+        "Namespace": "Namespace",
+        "Key": "Key",
+        "TranslationIn": "Translation in {{label}}",
+        "Insert": "Insert {{label}}",
+        "Duplicate": "Duplicate"
+    },
+    "TableTemplate": {
+        "AddButton": "Add",
+        "GlobalFilter": "Filter",
+        "ExportButton": "Export",
+        "Dialog": {
+            "Back": "Back",
+            "Save": "Save",
+            "Details": "Details"
+        },
+        "MenuItem": {
+            "View": "View",
+            "Disable": "Disable",
+            "Activate": "Activate",
+            "ChangePassword": "Change Password",
+            "DisabledMultiple": "Disabled due to multiple selection"
+        },
+        "ConfirmationDialog": {
+            "Title": "Confirm",
+            "AcceptButton": "Yes",
+            "CancelButton": "No",
+            "Message": "Are you sure that you want to perform this action?"
+        }
+    },
+    "TreeTableTemplate": {
+        "AddButton": "Add",
+        "DeleteButton": "Delete",
+        "GlobalFilter": "Filter",
+        "ExportButton": "Export",
+        "HistoryButton": "Check changes",
+        "Association": "Association",
+        "Dissociation": "Dissociation",
+        "Dialog": {
+            "Back": "Back",
+            "Save": "Save",
+            "Details": "Details",
+            "Discard": "Discard"
+        },
+        "MenuItem": {
+            "View": "View",
+            "Disable": "Disable",
+            "Activate": "Activate"
+        },
+        "ConfirmationDialog": {
+            "Title": "Confirm",
+            "AcceptButton": "Yes",
+            "CancelButton": "No",
+            "Message": "Are you sure that you want to perform this action?"
+        },
+        "ReviewDialog": {
+            "Title": "Title",
+            "Action": "Action",
+            "Changes": "Changes",
+            "NewValue": "New Value",
+            "OldValue": "Old Value",
+            "LastModify": "Last Modify",
+            "ChangeType": {
+                "Create": "Create",
+                "Update": "Update",
+                "Delete": "Delete",
+                "Add": "Add",
+                "Remove": "Remove"
+            }
+        }
+    },
+    "App": {
+        "Errors": {
+            "Error": "Error",
+            "ErrorNoData": "An error occurred. Can't retrieve data",
+            "NoDataFound": "The list is empty.",
+            "BadCredentials": "Bad Credentials",
+            "WhiteSpaces": "This field cannot be left blank",
+            "EmailFormat": "Invalid email format"
+        },
+        "Loading": "Loading...",
+        "Saving": "Saving...",
+        "Success": "Success",
+        "Warning": "Warning",
+        "true": "True",
+        "false": "False"
+    },
+    "DashBoard": {
+        "Greetings": "Welcome to the management Application"
+    }
+}
