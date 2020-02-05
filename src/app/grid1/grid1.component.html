@@ -1,0 +1,25 @@
+<p>IgxGrid with optional features like sorting, filtering, editing, etc.<br />
+You can read more about configuring the igx-grid component in the 
+<a href="https://github.com/IgniteUI/igniteui-angular/blob/master/projects/igniteui-angular/src/lib/grids/README.md" target="_blank">README</a> or the 
+<a href="https://www.infragistics.com/products/ignite-ui-angular/angular/components/grid.html" target="_blank">official documentation</a>.</p>
+<p>Active Features:  <a href="https://www.infragistics.com/products/ignite-ui-angular/angular/components/grid_Sorting.html" target="_blank">Sorting</a>, <a href="https://www.infragistics.com/products/ignite-ui-angular/angular/components/grid_Filtering.html" target="_blank">Filtering</a>, <a href="https://www.infragistics.com/products/ignite-ui-angular/angular/components/grid_groupby.html" target="_blank">Group By</a>, <a href="https://www.infragistics.com/products/ignite-ui-angular/angular/components/grid_column_resizing.html" target="_blank">Resizing</a>, <a href="https://www.infragistics.com/products/ignite-ui-angular/angular/components/grid_selection.html" target="_blank">Row Selection</a>, <a href="https://www.infragistics.com/products/ignite-ui-angular/angular/components/grid_Paging.html" target="_blank">Paging</a>, <a href="https://www.infragistics.com/products/ignite-ui-angular/angular/components/grid_column_pinning.html" target="_blank">Column Pinning</a>, <a href="https://www.infragistics.com/products/ignite-ui-angular/angular/components/grid_column_moving.html" target="_blank">Column Moving</a>, <a href="https://www.infragistics.com/products/ignite-ui-angular/angular/components/grid_column_hiding.html" target="_blank">Column Hiding</a></p>
+<igx-grid #grid1 [data]="localData" [primaryKey]="'EmployeeID'" width="900px" height="550px" rowSelection="multiple" [paging]="true" [columnPinning]="true" [columnHiding]="true" [showToolbar]="true" toolbarTitle="Employees">
+  <igx-column field="FirstName" header="First Name"  width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="true">
+  </igx-column>
+  <igx-column field="LastName" header="Last Name" width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="true">
+  </igx-column>
+  <igx-column field="Country" width="140px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
+  </igx-column>
+  <igx-column field="Age" width="110px" dataType="number" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
+  </igx-column>
+  <igx-column field="RegistererDate" header="Registerer Date" width="180px" dataType="date" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
+    <ng-template igxCell let-value>
+        {{ value | date }}
+    </ng-template>
+  </igx-column>
+    <igx-column field="IsActive" header="Is Active" width="140px" dataType="boolean" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
+    <ng-template igxCell let-cell="cell">
+      <igx-checkbox [checked]="cell.value" [disabled]="true"></igx-checkbox>
+    </ng-template>
+  </igx-column>
+</igx-grid>
