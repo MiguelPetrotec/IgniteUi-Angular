@@ -14,7 +14,7 @@
         </div>
       </div>
       <span>
-        <div class="account-container" *ngIf="afAuth.authState | async as user; else showLogin">
+        <div class="account-container" *ngIf="afAuth.authState as user; else showLogin">
           <!-- <span *ngIf="innerWidth > 650">Hey {{ user.displayName !== null ? user.displayName : ''}}!</span>COMENTADA -->
           <span *ngIf="innerWidth > 650">Hey Teste !</span>
           <span *ngIf="innerWidth < 650">Hey Teste !</span>
