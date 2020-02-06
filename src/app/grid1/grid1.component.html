@@ -1,20 +1,24 @@
-<igx-grid #grid1 [data]="localData" [primaryKey]="'EmployeeID'" width="900px" height="550px" rowSelection="multiple" [paging]="true" [columnPinning]="true" [columnHiding]="true" [showToolbar]="true" toolbarTitle="Employees">
-  <igx-column field="FirstName" header="First Name"  width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="true">
+<igx-grid #grid [data]="remoteData | async" [primaryKey]="'code'" width="900px" height="550px" rowSelection="multiple" [paging]="true"
+ [columnPinning]="true" [columnHiding]="true" [showToolbar]="true" toolbarTitle="Employees" [allowFiltering]="true" [filterMode]="'excelStyleFilter'"
+ [filterStrategy]="noopFilterStrategy" >
+  <igx-column field="code" header="Code"  width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="true">
   </igx-column>
-  <igx-column field="LastName" header="Last Name" width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="true">
+  <igx-column field="name" header="Full Name" width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="true">
   </igx-column>
-  <igx-column field="Country" width="140px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
+  <igx-column field="customerCode" header="Customer Code" width="140px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
   </igx-column>
-  <igx-column field="Age" width="110px" dataType="number" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
+  <igx-column field="vatin" width="110px" dataType="number" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
   </igx-column>
-  <igx-column field="RegistererDate" header="Registerer Date" width="180px" dataType="date" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
+  <igx-column field="statusCode" header="Status Code" width="110px" dataType="number" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
+  </igx-column>
+  <igx-column field="birthday" header="Birthday" width="180px" dataType="date" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
     <ng-template igxCell let-value>
         {{ value | date }}
     </ng-template>
   </igx-column>
-    <igx-column field="IsActive" header="Is Active" width="140px" dataType="boolean" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
+    <!-- <igx-column field="IsActive" header="Is Active" width="140px" dataType="boolean" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
     <ng-template igxCell let-cell="cell">
       <igx-checkbox [checked]="cell.value" [disabled]="true"></igx-checkbox>
     </ng-template>
-  </igx-column>
+  </igx-column> -->
 </igx-grid>
