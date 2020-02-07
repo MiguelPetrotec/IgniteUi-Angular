@@ -12,5 +12,4 @@ export interface columnConfig {
     groupable: boolean;
     hidden: boolean;
     width: string;
-
 }

@@ -6,11 +6,14 @@ import { Subject, Observable } from 'rxjs';
 import { RemoteFilteringService } from './services/remoteFilteringService';
 import { CustomCustomerDTO } from './models/custom-CustomerDTO';
 import { columnConfig } from './models/column-Config';
+import { PropertiesService } from './services/properties/propertiesService.service';
+import { PropertyDTO } from './models/properties/PropertyDTO';
 
 const DEBOUNCE_TIME = 300;
+const USAGE_CODE = 'CUSTOMER';
 
 @Component({
-  providers: [RemoteFilteringService],
+  providers: [RemoteFilteringService, PropertiesService],
   selector: 'app-grid1',
   templateUrl: './grid1.component.html',
   styleUrls: ['./grid1.component.scss']
@@ -26,6 +29,11 @@ export class Grid1Component implements OnInit {
   private destroy$ = new Subject<boolean>();
 
   public remoteData: Observable<CustomCustomerDTO[]>;
+  public propertyList: Observable<PropertyDTO[]>;
+
+  // Plain Data
+
+  public properties: PropertyDTO[];
 
   // Pagination
   public page = 0;
@@ -43,7 +51,15 @@ export class Grid1Component implements OnInit {
 
   //
 
-  constructor(private remoteService: RemoteFilteringService, private renderer: Renderer2) {
+  constructor(private remoteService: RemoteFilteringService, private renderer: Renderer2, private propertiesService: PropertiesService) {
+    // use rxjs zip
+
+    this.propertiesService.getData(USAGE_CODE, (data) => {
+      this.properties = data.result.items;
+      console.dir(this.properties);
+      // this.grid.isLoading = false;
+    });
+
 
     // base grid config
     this.gridConfig = [
@@ -93,6 +109,7 @@ export class Grid1Component implements OnInit {
     // this.localData = employeesData;
     // this.remoteData = this.remoteService.remoteData;
     this.remoteData = this.remoteService.remoteData.asObservable();
+    this.propertyList = this.propertiesService.remoteData.asObservable();
 
   }
 
@@ -196,6 +213,5 @@ export class Grid1Component implements OnInit {
       });
 
   }
-
 
 }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FilteringLogic, IForOfState, SortingDirection } from 'igniteui-angular';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { FilteringLogic, SortingDirection } from 'igniteui-angular';
+import { BehaviorSubject } from 'rxjs';
 
 // const DATA_URL = 'https://services.odata.org/V4/Northwind/Northwind.svc/Products';
 const DATA_URL = 'http://192.168.1.35:51024/api/v1/parties/customers/search';
@@ -23,7 +23,7 @@ export enum FILTER_OPERATION {
 @Injectable()
 export class RemoteFilteringService {
     public remoteData: BehaviorSubject<any[]>;
-    private _remoteData: BehaviorSubject<any[]>;
+    // private _remoteData: BehaviorSubject<any[]>;
 
     constructor(private _http: HttpClient) {
         // this._remoteData = new BehaviorSubject([]);
