@@ -3,7 +3,7 @@
  [filterStrategy]="noopFilterStrategy" [paginationTemplate]="customPager" >
   <igx-column field="code" header="Code"  width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="false">
   </igx-column>
-  <igx-column field="name" header="Full Name" width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="false">
+  <igx-column field="name" header="Full Name" width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="false" [hidden]="true">
   </igx-column>
   <igx-column field="customerCode" header="Customer Code" width="140px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
   </igx-column>
@@ -16,6 +16,11 @@
         {{ value | date }}
     </ng-template>
   </igx-column>
+  <!-- <igx-column *ngFor="let property of (this.remoteData | async)" field="birthday" header="Birthday" width="180px" dataType="date" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
+    <ng-template igxCell let-value>
+        {{ value | date }}
+    </ng-template>
+  </igx-column> -->
     <!-- <igx-column field="IsActive" header="Is Active" width="140px" dataType="boolean" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
     <ng-template igxCell let-cell="cell">
       <igx-checkbox [checked]="cell.value" [disabled]="true"></igx-checkbox>
