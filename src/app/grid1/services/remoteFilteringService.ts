@@ -22,16 +22,17 @@ export enum FILTER_OPERATION {
 
 @Injectable()
 export class RemoteFilteringService {
-    public remoteData: Observable<any[]>;
+    public remoteData: BehaviorSubject<any[]>;
     private _remoteData: BehaviorSubject<any[]>;
 
     constructor(private _http: HttpClient) {
-        this._remoteData = new BehaviorSubject([]);
-        this.remoteData = this._remoteData.asObservable();
+        // this._remoteData = new BehaviorSubject([]);
+        // this.remoteData = this._remoteData.asObservable();
+        this.remoteData = new BehaviorSubject([]);
     }
 
     public getData(
-        virtualizationArgs?: IForOfState,
+        paging?: any,
         filteringArgs?: any,
         sortingArgs?: any, cb?: (any) => void): any {
 
@@ -41,22 +42,23 @@ export class RemoteFilteringService {
             locale: 'pt-pt',
             entity_code: '1',
             rank_order: '1',
-            query: 'code=="00001"'
+            // query: 'code=="00001"'
         });
 
 
         return this._http.get(this.buildDataUrl(
-            virtualizationArgs, filteringArgs, sortingArgs), { headers }).subscribe((data: any) => {
-                this._remoteData.next(data.value);
+            paging, filteringArgs, sortingArgs), { headers }).subscribe((data: any) => {
+                console.dir(data);
+                this.remoteData.next(data.result.items);
                 if (cb) {
                     cb(data);
                 }
             });
     }
 
-    private buildDataUrl(virtualizationArgs: any, filteringArgs: any, sortingArgs: any): string {
+    private buildDataUrl(pagingArgs: any, filteringArgs: any, sortingArgs: any): string {
         // let baseQueryString = `${DATA_URL}?$count=true`;
-        let baseQueryString = `${DATA_URL}`;
+        let baseQueryString = `${DATA_URL}?`;
         let scrollingQuery = EMPTY_STRING;
         let orderQuery = EMPTY_STRING;
         let filterQuery = EMPTY_STRING;
@@ -81,15 +83,15 @@ export class RemoteFilteringService {
             filterQuery = `$filter=${filter}`;
         }
 
-        if (virtualizationArgs) {
-            scrollingQuery = this._buildScrollExpression(virtualizationArgs);
+        if (pagingArgs) {
+            scrollingQuery = this._buildScrollExpression(pagingArgs);
         }
 
         query += (orderQuery !== EMPTY_STRING) ? `&${orderQuery}` : EMPTY_STRING;
         query += (filterQuery !== EMPTY_STRING) ? `&${filterQuery}` : EMPTY_STRING;
         query += (scrollingQuery !== EMPTY_STRING) ? `&${scrollingQuery}` : EMPTY_STRING;
 
-        // baseQueryString += query;
+        baseQueryString += query;
 
         return baseQueryString;
     }
@@ -188,12 +190,12 @@ export class RemoteFilteringService {
         return `$orderby=${sortingArgs.fieldName} ${sortingDirection}`;
     }
 
-    private _buildScrollExpression(virtualizationArgs): string {
-        let requiredChunkSize: number;
-        const skip = virtualizationArgs.startIndex;
-        requiredChunkSize = virtualizationArgs.chunkSize === 0 ? 11 : virtualizationArgs.chunkSize;
-        const top = requiredChunkSize;
+    private _buildScrollExpression(pagingArgs): string {
 
-        return `$skip=${skip}&$top=${top}`;
+        const skip = pagingArgs.skip;
+        const top = pagingArgs.top;
+
+        return `real_size=true&offset=${skip}&limit=${top}`;
     }
+
 }

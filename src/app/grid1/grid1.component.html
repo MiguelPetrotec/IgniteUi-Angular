@@ -1,13 +1,13 @@
-<igx-grid #grid [data]="remoteData | async" [primaryKey]="'code'" width="900px" height="550px" rowSelection="multiple" [paging]="true"
+<igx-grid #grid [data]="remoteData | async" [primaryKey]="'code'" width="1200px" height="550px" rowSelection="multiple" [paging]="true" [perPage]="perPage"
  [columnPinning]="true" [columnHiding]="true" [showToolbar]="true" toolbarTitle="Employees" [allowFiltering]="true" [filterMode]="'excelStyleFilter'"
- [filterStrategy]="noopFilterStrategy" >
-  <igx-column field="code" header="Code"  width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="true">
+ [filterStrategy]="noopFilterStrategy" [paginationTemplate]="customPager" >
+  <igx-column field="code" header="Code"  width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="false">
   </igx-column>
-  <igx-column field="name" header="Full Name" width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="true">
+  <igx-column field="name" header="Full Name" width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="false">
   </igx-column>
   <igx-column field="customerCode" header="Customer Code" width="140px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
   </igx-column>
-  <igx-column field="vatin" width="110px" dataType="number" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
+  <igx-column field="vatin" header="VAT IN" width="110px" dataType="number" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
   </igx-column>
   <igx-column field="statusCode" header="Status Code" width="110px" dataType="number" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
   </igx-column>
@@ -22,3 +22,13 @@
     </ng-template>
   </igx-column> -->
 </igx-grid>
+<ng-template #customPager let-api>
+  <igx-paginator #paginator
+      [totalRecords]="totalCount"
+      [(perPage)]="perPage"
+      [selectLabel]="'Records per page:'"
+      [selectOptions]="selectOptions"
+      [displayDensity]="grid.displayDensity"
+      (pageChange)="paginate($event)">
+  </igx-paginator>
+</ng-template>

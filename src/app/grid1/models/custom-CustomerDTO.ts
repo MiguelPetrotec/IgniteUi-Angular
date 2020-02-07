@@ -1,6 +1,5 @@
 export interface CustomCustomerDTO {
 
-    customerCode: string;
     properties: string[];
     categories: string[];
     code: string;
@@ -8,8 +7,9 @@ export interface CustomCustomerDTO {
     salutationCode: string;
     vatin: string;
     name: string;
-    blockReason: string;
     birthday: string;
+    blockReason: string;
     createdOn: string;
+    customerCode: string;
     updatedOn: string;
 }
