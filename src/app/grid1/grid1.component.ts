@@ -5,6 +5,7 @@ import { IgxGridComponent, NoopFilteringStrategy } from 'igniteui-angular';
 import { Subject, Observable } from 'rxjs';
 import { RemoteFilteringService } from './services/remoteFilteringService';
 import { CustomCustomerDTO } from './models/custom-CustomerDTO';
+import { columnConfig } from './models/column-Config';
 
 const DEBOUNCE_TIME = 300;
 
@@ -37,7 +38,56 @@ export class Grid1Component implements OnInit {
   private _dataLengthSubscriber;
   //
 
-  constructor(private remoteService: RemoteFilteringService, private renderer: Renderer2) { }
+  // grid config
+  gridConfig: columnConfig[];
+
+  //
+
+  constructor(private remoteService: RemoteFilteringService, private renderer: Renderer2) {
+
+    // base grid config
+    this.gridConfig = [
+      {
+        field: 'code', header: 'Code', width: '150px', sortable: true,
+        filterable: true, resizable: true, movable: true, pinned: false,
+        groupable: false, hidden: false, dataType: 'text'
+      },
+      {
+        field: 'name', header: 'Full Name', width: '150px', sortable: true,
+        filterable: true, resizable: true, movable: true, pinned: false,
+        groupable: false, hidden: true, dataType: 'text'
+      },
+      {
+        field: 'customerCode', header: 'Customer Code', width: '140px', sortable: true,
+        filterable: true, resizable: true, movable: true, pinned: false,
+        groupable: false, hidden: false, dataType: 'text'
+      },
+      {
+        field: 'vatin', header: 'VAT IN', width: '110px', sortable: true,
+        filterable: true, resizable: true, movable: true, pinned: false,
+        groupable: true, hidden: false, dataType: 'number'
+      },
+      {
+        field: 'statusCode', header: 'Status Code', width: '110px', sortable: true,
+        filterable: true, resizable: true, movable: true, pinned: false,
+        groupable: false, hidden: false, dataType: 'text'
+      },
+      {
+        field: 'birthday', header: 'Birthday', width: '180px', sortable: true,
+        filterable: true, resizable: true, movable: true, pinned: false,
+        groupable: false, hidden: false, dataType: 'date'
+      },
+      {
+        field: 'properties', header: '4', width: '150px', sortable: true,
+        filterable: true, resizable: true, movable: true, pinned: false,
+        groupable: false, hidden: false, dataType: 'array'
+      }
+    ];
+
+    // dynamic grid config
+    // do the request to obtain properties and categories
+
+  }
 
   ngOnInit() {
     // this.localData = employeesData;

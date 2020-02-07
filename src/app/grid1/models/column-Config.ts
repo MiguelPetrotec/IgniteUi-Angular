@@ -11,5 +11,6 @@ export interface columnConfig {
     pinned: boolean;
     groupable: boolean;
     hidden: boolean;
+    width: string;
 
 }
