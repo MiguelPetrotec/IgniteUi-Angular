@@ -1,9 +1,12 @@
+import { DataType } from './enum/DataType.enum';
+
+
 // tslint:disable-next-line:class-name
 export interface columnConfig {
 
     field: string;
     header: string;
-    dataType: string;
+    dataType: DataType;
     sortable: boolean;
     resizable: boolean;
     filterable: boolean;
@@ -12,4 +15,6 @@ export interface columnConfig {
     groupable: boolean;
     hidden: boolean;
     width: string;
+    type: string;
+    code?: string;
 }

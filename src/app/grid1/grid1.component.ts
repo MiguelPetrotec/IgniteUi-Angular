@@ -8,6 +8,7 @@ import { CustomCustomerDTO } from './models/custom-CustomerDTO';
 import { columnConfig } from './models/column-Config';
 import { PropertiesService } from './services/properties/propertiesService.service';
 import { PropertyDTO } from './models/properties/PropertyDTO';
+import { DataType } from './models/enum/DataType.enum';
 
 const DEBOUNCE_TIME = 300;
 const USAGE_CODE = 'CUSTOMER';
@@ -54,56 +55,68 @@ export class Grid1Component implements OnInit {
   constructor(private remoteService: RemoteFilteringService, private renderer: Renderer2, private propertiesService: PropertiesService) {
     // use rxjs zip
 
+
+    // base grid config
+    this.gridConfig = [];
+
     this.propertiesService.getData(USAGE_CODE, (data) => {
       this.properties = data.result.items;
       console.dir(this.properties);
+      console.log('Loaded Properties');
+      // build the properties columns
+      this.gridConfig = this.gridConfig.concat([
+        {
+          field: 'code', header: 'Code', width: '150px', sortable: true,
+          filterable: true, resizable: true, movable: true, pinned: false,
+          groupable: false, hidden: false, dataType: DataType.TEXT, type: 'text'
+        },
+        {
+          field: 'name', header: 'Full Name', width: '150px', sortable: true,
+          filterable: true, resizable: true, movable: true, pinned: false,
+          groupable: false, hidden: true, dataType: DataType.TEXT, type: 'text'
+        },
+        {
+          field: 'customerCode', header: 'Customer Code', width: '140px', sortable: true,
+          filterable: true, resizable: true, movable: true, pinned: false,
+          groupable: false, hidden: false, dataType: DataType.TEXT, type: 'text'
+        },
+        {
+          field: 'vatin', header: 'VAT IN', width: '110px', sortable: true,
+          filterable: true, resizable: true, movable: true, pinned: false,
+          groupable: true, hidden: false, dataType: DataType.NUMERIC, type: 'number'
+        },
+        {
+          field: 'statusCode', header: 'Status Code', width: '110px', sortable: true,
+          filterable: true, resizable: true, movable: true, pinned: false,
+          groupable: false, hidden: false, dataType: DataType.TEXT, type: 'text'
+        },
+        {
+          field: 'birthday', header: 'Birthday', width: '180px', sortable: true,
+          filterable: true, resizable: true, movable: true, pinned: false,
+          groupable: false, hidden: false, dataType: DataType.DATE, type: 'date'
+        }
+      ]);
+
+
+      this.properties.forEach(prop => {
+        this.gridConfig = this.gridConfig.concat(
+          {
+            field: 'properties', header: prop.detailedDescription['en-en'], width: '150px', sortable: true,
+            filterable: true, resizable: true, movable: true, pinned: false,
+            groupable: false, hidden: !prop.mandatory, dataType: DataType[prop.dataTypeCode], type: 'array', code: prop.code
+          }
+        );
+      });
+      console.dir(this.gridConfig);
       // this.grid.isLoading = false;
     });
-
-
-    // base grid config
-    this.gridConfig = [
-      {
-        field: 'code', header: 'Code', width: '150px', sortable: true,
-        filterable: true, resizable: true, movable: true, pinned: false,
-        groupable: false, hidden: false, dataType: 'text'
-      },
-      {
-        field: 'name', header: 'Full Name', width: '150px', sortable: true,
-        filterable: true, resizable: true, movable: true, pinned: false,
-        groupable: false, hidden: true, dataType: 'text'
-      },
-      {
-        field: 'customerCode', header: 'Customer Code', width: '140px', sortable: true,
-        filterable: true, resizable: true, movable: true, pinned: false,
-        groupable: false, hidden: false, dataType: 'text'
-      },
-      {
-        field: 'vatin', header: 'VAT IN', width: '110px', sortable: true,
-        filterable: true, resizable: true, movable: true, pinned: false,
-        groupable: true, hidden: false, dataType: 'number'
-      },
-      {
-        field: 'statusCode', header: 'Status Code', width: '110px', sortable: true,
-        filterable: true, resizable: true, movable: true, pinned: false,
-        groupable: false, hidden: false, dataType: 'text'
-      },
-      {
-        field: 'birthday', header: 'Birthday', width: '180px', sortable: true,
-        filterable: true, resizable: true, movable: true, pinned: false,
-        groupable: false, hidden: false, dataType: 'date'
-      },
-      {
-        field: 'properties', header: '4', width: '150px', sortable: true,
-        filterable: true, resizable: true, movable: true, pinned: false,
-        groupable: false, hidden: false, dataType: 'array'
-      }
-    ];
 
     // dynamic grid config
     // do the request to obtain properties and categories
 
   }
+
+
 
   ngOnInit() {
     // this.localData = employeesData;
@@ -211,7 +224,5 @@ export class Grid1Component implements OnInit {
         this.totalCount = data.result.size;
         this.grid.isLoading = false;
       });
-
   }
-
 }

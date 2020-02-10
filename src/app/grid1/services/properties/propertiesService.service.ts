@@ -35,8 +35,11 @@ export class PropertiesService {
     const baseQueryString = `${DATA_URL}?usageCode=${usageCode}`;
 
     return this._http.get(baseQueryString, { headers }).subscribe((data: any) => {
-      console.dir(data);
+      // console.dir(data);
       this.remoteData.next(data.result.items);
+      if(cb){
+        cb(data);
+      }
     });
   }
 

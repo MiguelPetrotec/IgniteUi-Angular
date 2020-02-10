@@ -48,7 +48,7 @@ export class RemoteFilteringService {
 
         return this._http.get(this.buildDataUrl(
             paging, filteringArgs, sortingArgs), { headers }).subscribe((data: any) => {
-                console.dir(data);
+                // console.dir(data);
                 this.remoteData.next(data.result.items);
                 if (cb) {
                     cb(data);

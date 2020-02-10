@@ -1,6 +1,6 @@
 <igx-grid #grid [data]="remoteData | async" [primaryKey]="'code'" width="1200px" height="550px" rowSelection="multiple"
   [paging]="true" [perPage]="perPage" [columnPinning]="true" [columnHiding]="true" [showToolbar]="true"
-  toolbarTitle="Employees" [allowFiltering]="true" [filterMode]="'excelStyleFilter'"
+  toolbarTitle="Employees" [allowFiltering]="true" [filterMode]="'excelStyleFilter'" [autoGenerate]="false"
   [filterStrategy]="noopFilterStrategy" [paginationTemplate]="customPager">
   <!-- <igx-column field="code" header="Code"  width="150px" dataType="text" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="false">
   </igx-column>
@@ -20,13 +20,14 @@
   <igx-column *ngFor="let col of this.gridConfig" [field]="col.field" [header]="col.header" [width]="col.width"
     [dataType]="col.dataType" [sortable]="col.sortable" [filterable]="col.filterable" [resizable]="col.resizable"
     [movable]="col.movable" [groupable]="col.groupable" [pinned]="col.pinned" [hidden]="col.hidden">
-    <ng-template igxCell let-value *ngIf="col.dataType ==='date'">
+    <ng-template igxCell let-value *ngIf="col.type ==='date'">
       {{ value | date }}
     </ng-template>
-    <ng-template igxCell let-value *ngIf="col.dataType ==='array'">
-      {{ value ? value[col.header] : '' }}
+    <ng-template igxCell let-value *ngIf="col.type ==='array'">
+      {{ value ? value[col.code] : '' }}
+      <!-- {{ value }} -->
     </ng-template>
-    <ng-template igxCell let-value *ngIf="col.dataType !=='date' && col.dataType !=='array'">
+    <ng-template igxCell let-value *ngIf="col.type !=='date' && col.type !=='array'">
       {{ value }}
     </ng-template>
   </igx-column>
