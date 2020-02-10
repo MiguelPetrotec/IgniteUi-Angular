@@ -1,25 +1,28 @@
-import { Component, OnInit, Renderer2, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 // import { employeesData } from './localData';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil, skip } from 'rxjs/operators';
 import { IgxGridComponent, NoopFilteringStrategy } from 'igniteui-angular';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, Subscription, zip } from 'rxjs';
 import { RemoteFilteringService } from './services/remoteFilteringService';
 import { CustomCustomerDTO } from './models/custom-CustomerDTO';
 import { columnConfig } from './models/column-Config';
 import { PropertiesService } from './services/properties/propertiesService.service';
 import { PropertyDTO } from './models/properties/PropertyDTO';
 import { DataType } from './models/enum/DataType.enum';
+import { CategoriesService } from './services/categories/categoriesService.service';
+import { CategoryDTO } from './models/categories/CategoryDTO';
 
 const DEBOUNCE_TIME = 300;
 const USAGE_CODE = 'CUSTOMER';
 
 @Component({
-  providers: [RemoteFilteringService, PropertiesService],
+  providers: [RemoteFilteringService, PropertiesService, CategoriesService],
   selector: 'app-grid1',
   templateUrl: './grid1.component.html',
   styleUrls: ['./grid1.component.scss']
 })
-export class Grid1Component implements OnInit {
+export class Grid1Component implements OnInit, OnDestroy {
+
   public localData: any[];
   title = 'grid1';
   @ViewChild('grid', { static: true }) public grid: IgxGridComponent;
@@ -31,10 +34,16 @@ export class Grid1Component implements OnInit {
 
   public remoteData: Observable<CustomCustomerDTO[]>;
   public propertyList: Observable<PropertyDTO[]>;
+  public categoryList: Observable<CategoryDTO[]>;
 
   // Plain Data
 
   public properties: PropertyDTO[];
+  public categories: CategoryDTO[];
+
+  // Zip subscription
+
+  public zipsubs: Subscription;
 
   // Pagination
   public page = 0;
@@ -52,18 +61,22 @@ export class Grid1Component implements OnInit {
 
   //
 
-  constructor(private remoteService: RemoteFilteringService, private renderer: Renderer2, private propertiesService: PropertiesService) {
-    // use rxjs zip
+  constructor(private remoteService: RemoteFilteringService, private renderer: Renderer2, private propertiesService: PropertiesService,
+    private categoriesService: CategoriesService) {
 
-
-    // base grid config
+    this.remoteData = this.remoteService.remoteData.asObservable();
+    this.propertyList = this.propertiesService.remoteData.asObservable();
+    this.categoryList = this.categoriesService.remoteData.asObservable();
     this.gridConfig = [];
+    // use rxjs zip
+    this.zipsubs = zip(
+      this.remoteData.pipe(skip(1)),
+      this.propertyList.pipe(skip(1)),
+      this.categoryList.pipe(skip(1))
+    ).subscribe(result => {
 
-    this.propertiesService.getData(USAGE_CODE, (data) => {
-      this.properties = data.result.items;
-      console.dir(this.properties);
-      console.log('Loaded Properties');
-      // build the properties columns
+      console.log('Start Column Dynamic Generator');
+      // base grid config
       this.gridConfig = this.gridConfig.concat([
         {
           field: 'code', header: 'Code', width: '150px', sortable: true,
@@ -97,18 +110,43 @@ export class Grid1Component implements OnInit {
         }
       ]);
 
-
-      this.properties.forEach(prop => {
-        this.gridConfig = this.gridConfig.concat(
-          {
-            field: 'properties', header: prop.detailedDescription['en-en'], width: '150px', sortable: true,
-            filterable: true, resizable: true, movable: true, pinned: false,
-            groupable: false, hidden: !prop.mandatory, dataType: DataType[prop.dataTypeCode], type: 'array', code: prop.code
+      // properties
+      if (result[1] && result[1].length > 0) {
+        result[1].forEach(prop => {
+          this.gridConfig = this.gridConfig.concat(
+            {
+              field: 'properties', header: prop.detailedDescription['en-en'], width: '150px', sortable: true,
+              filterable: true, resizable: true, movable: true, pinned: false,
+              groupable: false, hidden: !prop.mandatory, dataType: DataType[prop.dataTypeCode], type: 'prop', code: prop.code
+            }
+          );
+        });
+      }
+      // categories
+      if (result[2] && result[2].length > 0) {
+        result[2].forEach(cat => {
+          if (cat.categoryElements) {
+            // cat.categoryElements.forEach(catElem => {
+            this.gridConfig = this.gridConfig.concat(
+              {
+                field: 'categories', header: cat.detailedDescription['en-en'], width: '150px', sortable: true,
+                filterable: true, resizable: true, movable: true, pinned: false,
+                groupable: false, hidden: !cat.mandatory, dataType: DataType.TEXT, type: 'cat', code: cat.code
+              }
+            );
+            // });
           }
-        );
-      });
-      console.dir(this.gridConfig);
-      // this.grid.isLoading = false;
+        });
+      }
+    });
+
+    this.categoriesService.getData(USAGE_CODE, (data) => {
+      this.categories = data.result.items;
+
+    });
+
+    this.propertiesService.getData(USAGE_CODE, (data) => {
+      this.properties = data.result.items;
     });
 
     // dynamic grid config
@@ -121,9 +159,16 @@ export class Grid1Component implements OnInit {
   ngOnInit() {
     // this.localData = employeesData;
     // this.remoteData = this.remoteService.remoteData;
-    this.remoteData = this.remoteService.remoteData.asObservable();
-    this.propertyList = this.propertiesService.remoteData.asObservable();
+    // this.remoteData = this.remoteService.remoteData.asObservable();
+    // this.propertyList = this.propertiesService.remoteData.asObservable();
+    // this.categoryList = this.categoriesService.remoteData.asObservable();
 
+  }
+
+  ngOnDestroy(): void {
+    if (this.zipsubs) {
+      this.zipsubs.unsubscribe();
+    }
   }
 
   public ngAfterViewInit() {
@@ -225,4 +270,19 @@ export class Grid1Component implements OnInit {
         this.grid.isLoading = false;
       });
   }
+
+  private getCategoryValue(catCode: string, catElemCode: string): string {
+
+    if (catCode && catElemCode && this.categoryList && this.categories.length > 0) {
+      const category = this.categories.find(cat => cat.code === catCode);
+      if (category) {
+        const idx = category.categoryElements.findIndex(catElem => catElem.code === catElemCode);
+        if (idx >= 0) {
+          return category.categoryElements[idx].detailedDescription['en-en']; // replace with the current locale code
+        }
+      }
+    }
+    return '';
+  }
+
 }

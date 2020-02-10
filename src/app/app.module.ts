@@ -22,6 +22,7 @@ import localePtPt from '@angular/common/locales/pt-PT';
 import { RemoteFilteringService } from './grid1/services/remoteFilteringService';
 import { HttpClientModule } from '@angular/common/http';
 import { PropertiesService } from './grid1/services/properties/propertiesService.service';
+import { CategoriesService } from './grid1/services/categories/categoriesService.service';
 
 
 
@@ -65,7 +66,7 @@ registerLocaleData(localePtPt);
     HttpClientModule,
     IgxToastModule
   ],
-  providers: [RemoteFilteringService, PropertiesService],
+  providers: [RemoteFilteringService, PropertiesService, CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

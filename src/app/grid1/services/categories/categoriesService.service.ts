@@ -3,15 +3,16 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 
-// const DATA_URL = 'http://192.168.1.35:51024/api/v1/properties?usageCode=CUSTOMER';
-const DATA_URL = 'http://192.168.1.35:51024/api/v1/properties';
+// const DATA_URL = 'http://192.168.1.35:51024/api/v1/categories/elements?usageCode=CUSTOMER';
+const DATA_URL = 'http://192.168.1.35:51024/api/v1/categories/elements';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PropertiesService {
+export class CategoriesService {
 
   public remoteData: BehaviorSubject<any[]>;
+
 
   constructor(private _http: HttpClient) {
 
@@ -34,7 +35,7 @@ export class PropertiesService {
     return this._http.get(baseQueryString, { headers }).subscribe((data: any) => {
       // console.dir(data);
       this.remoteData.next(data.result.items);
-      if(cb){
+      if (cb) {
         cb(data);
       }
     });

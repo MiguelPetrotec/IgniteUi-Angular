@@ -23,11 +23,15 @@
     <ng-template igxCell let-value *ngIf="col.type ==='date'">
       {{ value | date }}
     </ng-template>
-    <ng-template igxCell let-value *ngIf="col.type ==='array'">
+    <ng-template igxCell let-value *ngIf="col.type ==='prop'">
       {{ value ? value[col.code] : '' }}
       <!-- {{ value }} -->
     </ng-template>
-    <ng-template igxCell let-value *ngIf="col.type !=='date' && col.type !=='array'">
+    <ng-template igxCell let-value *ngIf="col.type ==='cat'">
+      {{ value ? this.getCategoryValue(col.code, value[col.code]) : '' }}
+      <!-- {{ value }} -->
+    </ng-template>
+    <ng-template igxCell let-value *ngIf="col.type !=='date' && col.type !=='cat' && col.type !=='prop'">
       {{ value }}
     </ng-template>
   </igx-column>
