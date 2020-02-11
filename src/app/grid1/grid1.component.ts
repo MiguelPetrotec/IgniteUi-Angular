@@ -107,15 +107,17 @@ export class Grid1Component implements OnInit, OnDestroy {
           field: 'birthday', header: 'Birthday', width: '180px', sortable: true,
           filterable: true, resizable: true, movable: true, pinned: false,
           groupable: false, hidden: false, dataType: DataType.DATE, type: 'date'
+
         }
       ]);
 
       // properties
       if (result[1] && result[1].length > 0) {
         result[1].forEach(prop => {
+          // 'properties[' + prop.code + ']'
           this.gridConfig = this.gridConfig.concat(
             {
-              field: 'properties', header: prop.detailedDescription['en-en'], width: '150px', sortable: true,
+              field: 'properties[' + prop.code + ']', header: prop.detailedDescription['en-en'], width: '150px', sortable: true,
               filterable: true, resizable: true, movable: true, pinned: false,
               groupable: false, hidden: !prop.mandatory, dataType: DataType[prop.dataTypeCode], type: 'prop', code: prop.code
             }
@@ -129,7 +131,7 @@ export class Grid1Component implements OnInit, OnDestroy {
             // cat.categoryElements.forEach(catElem => {
             this.gridConfig = this.gridConfig.concat(
               {
-                field: 'categories', header: cat.detailedDescription['en-en'], width: '150px', sortable: true,
+                field: 'categories[' + cat.code + ']', header: cat.detailedDescription['en-en'], width: '150px', sortable: true,
                 filterable: true, resizable: true, movable: true, pinned: false,
                 groupable: false, hidden: !cat.mandatory, dataType: DataType.TEXT, type: 'cat', code: cat.code
               }
@@ -273,7 +275,7 @@ export class Grid1Component implements OnInit, OnDestroy {
 
   private getCategoryValue(catCode: string, catElemCode: string): string {
 
-    if (catCode && catElemCode && this.categoryList && this.categories.length > 0) {
+    if (catCode && catElemCode && this.categories && this.categories.length > 0) {
       const category = this.categories.find(cat => cat.code === catCode);
       if (category) {
         const idx = category.categoryElements.findIndex(catElem => catElem.code === catElemCode);
@@ -283,6 +285,14 @@ export class Grid1Component implements OnInit, OnDestroy {
       }
     }
     return '';
+  }
+
+  public formatDate(val) {
+    if (val !== 'Select All') {
+      return new Intl.DateTimeFormat('en-en').format(val);
+    } else {
+      return val;
+    }
   }
 
 }

@@ -21,15 +21,14 @@
     [dataType]="col.dataType" [sortable]="col.sortable" [filterable]="col.filterable" [resizable]="col.resizable"
     [movable]="col.movable" [groupable]="col.groupable" [pinned]="col.pinned" [hidden]="col.hidden">
     <ng-template igxCell let-value *ngIf="col.type ==='date'">
-      {{ value | date }}
+      {{ value | date:'dd/MM/yyyy' }}
     </ng-template>
-    <ng-template igxCell let-value *ngIf="col.type ==='prop'">
-      {{ value ? value[col.code] : '' }}
-      <!-- {{ value }} -->
+    <ng-template igxCell let-cell="cell" *ngIf="col.type ==='prop'">
+
+      {{ cell.row.rowData['properties'] ? cell.row.rowData['properties'][col.code] : ''}}
     </ng-template>
-    <ng-template igxCell let-value *ngIf="col.type ==='cat'">
-      {{ value ? this.getCategoryValue(col.code, value[col.code]) : '' }}
-      <!-- {{ value }} -->
+    <ng-template igxCell let-value let-cell="cell" *ngIf="col.type ==='cat'">
+      {{ cell.row.rowData['categories'] ? this.getCategoryValue(col.code, cell.row.rowData['categories'][col.code]) : ''}}
     </ng-template>
     <ng-template igxCell let-value *ngIf="col.type !=='date' && col.type !=='cat' && col.type !=='prop'">
       {{ value }}

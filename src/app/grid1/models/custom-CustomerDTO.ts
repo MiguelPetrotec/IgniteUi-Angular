@@ -7,9 +7,9 @@ export interface CustomCustomerDTO {
     salutationCode: string;
     vatin: string;
     name: string;
-    birthday: string;
+    birthday: Date;
     blockReason: string;
-    createdOn: string;
+    createdOn: Date;
     customerCode: string;
-    updatedOn: string;
+    updatedOn: Date;
 }

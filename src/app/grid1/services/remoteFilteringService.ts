@@ -1,23 +1,25 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FilteringLogic, SortingDirection } from 'igniteui-angular';
+import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 // const DATA_URL = 'https://services.odata.org/V4/Northwind/Northwind.svc/Products';
 const DATA_URL = 'http://192.168.1.35:51024/api/v1/parties/customers/search';
 const EMPTY_STRING = '';
 const NULL_VALUE = null;
 export enum FILTER_OPERATION {
-    CONTAINS = 'contains',
+    CONTAINS = '=in=',
     STARTS_WITH = 'startswith',
     ENDS_WITH = 'endswith',
-    EQUALS = 'eq',
-    DOES_NOT_EQUAL = 'ne',
-    DOES_NOT_CONTAIN = 'not contains',
-    GREATER_THAN = 'gt',
-    LESS_THAN = 'lt',
-    LESS_THAN_EQUAL = 'le',
-    GREATER_THAN_EQUAL = 'ge'
+    EQUALS = '==',
+    DOES_NOT_EQUAL = '!=',
+    DOES_NOT_CONTAIN = '=out=',
+    GREATER_THAN = '=gt=',
+    LESS_THAN = '=lt=',
+    LESS_THAN_EQUAL = ' =le=',
+    GREATER_THAN_EQUAL = '=ge='
 }
 
 @Injectable()
@@ -36,38 +38,8 @@ export class RemoteFilteringService {
         filteringArgs?: any,
         sortingArgs?: any, cb?: (any) => void): any {
 
-        const headers = new HttpHeaders({
-
-            'Content-type': 'application/json',
-            locale: 'pt-pt',
-            entity_code: '1',
-            rank_order: '1',
-            // query: 'code=="00001"'
-        });
-
-
-        return this._http.get(this.buildDataUrl(
-            paging, filteringArgs, sortingArgs), { headers }).subscribe((data: any) => {
-                // console.dir(data);
-                this.remoteData.next(data.result.items);
-                if (cb) {
-                    cb(data);
-                }
-            });
-    }
-
-    private buildDataUrl(pagingArgs: any, filteringArgs: any, sortingArgs: any): string {
-        // let baseQueryString = `${DATA_URL}?$count=true`;
-        let baseQueryString = `${DATA_URL}?`;
-        let scrollingQuery = EMPTY_STRING;
-        let orderQuery = EMPTY_STRING;
         let filterQuery = EMPTY_STRING;
-        let query = EMPTY_STRING;
         let filter = EMPTY_STRING;
-
-        if (sortingArgs) {
-            orderQuery = this._buildSortExpression(sortingArgs);
-        }
 
         if (filteringArgs && filteringArgs.length > 0) {
             filteringArgs.forEach((columnFilter) => {
@@ -80,15 +52,83 @@ export class RemoteFilteringService {
                     columnFilter.operator);
             });
 
-            filterQuery = `$filter=${filter}`;
+            filterQuery = `${filter}`;
         }
+
+        let headers = new HttpHeaders({
+
+            'Content-type': 'application/json',
+            locale: 'pt-pt',
+            entity_code: '1',
+            rank_order: '1'
+        });
+
+        if (filterQuery.length > 0) {
+            headers = headers.append('query', filterQuery);
+        }
+
+        return this._http.get(this.buildDataUrl(
+            paging, filteringArgs, sortingArgs, headers), { headers }).pipe(map((resp: any) => {
+
+                resp.result.items.forEach( item =>{
+                    item.birthday = new Date(item.birthday);     // moment(item.birthday, 'YYYY-MM-DD');
+                    return item;
+                });
+                // console.log(item.birthDay);
+                return resp;
+            })).subscribe((data: any) => {
+                // console.dir(data);
+                // data.result.items.pipe(map((item: any) => {
+                //     console.log(item.birthDay);
+                //     item.birthDay = moment(item.birthDay);
+                //     return item;
+                // }));
+                this.remoteData.next(data.result.items);
+                if (cb) {
+                    cb(data);
+                }
+            });
+    }
+
+    private buildDataUrl(pagingArgs: any, filteringArgs: any, sortingArgs: any, header: HttpHeaders): string {
+        // let baseQueryString = `${DATA_URL}?$count=true`;
+        let baseQueryString = `${DATA_URL}?`;
+        let scrollingQuery = EMPTY_STRING;
+        let orderQuery = EMPTY_STRING;
+        // let filterQuery = EMPTY_STRING;
+        let query = EMPTY_STRING;
+        // let filter = EMPTY_STRING;
+
+        console.dir(sortingArgs);
+
+        if (sortingArgs) {
+            orderQuery = this._buildSortExpression(sortingArgs);
+        }
+
+        // if (filteringArgs && filteringArgs.length > 0) {
+        //     filteringArgs.forEach((columnFilter) => {
+        //         if (filter !== EMPTY_STRING) {
+        //             filter += ` ${FilteringLogic[FilteringLogic.And].toLowerCase()} `;
+        //         }
+
+        //         filter += this._buildAdvancedFilterExpression(
+        //             columnFilter.filteringOperands,
+        //             columnFilter.operator);
+        //     });
+
+        //     filterQuery = `query=${filter}`;
+        // }
+        // if (filterQuery.length > 0) {
+        //     header.set('query', filterQuery);
+        // //    header =  header.append('query', filterQuery);
+        // }
 
         if (pagingArgs) {
             scrollingQuery = this._buildScrollExpression(pagingArgs);
         }
 
         query += (orderQuery !== EMPTY_STRING) ? `&${orderQuery}` : EMPTY_STRING;
-        query += (filterQuery !== EMPTY_STRING) ? `&${filterQuery}` : EMPTY_STRING;
+        // query += (filterQuery !== EMPTY_STRING) ? `&${filterQuery}` : EMPTY_STRING;
         query += (scrollingQuery !== EMPTY_STRING) ? `&${scrollingQuery}` : EMPTY_STRING;
 
         baseQueryString += query;
@@ -187,7 +227,7 @@ export class RemoteFilteringService {
             }
         }
 
-        return `$orderby=${sortingArgs.fieldName} ${sortingDirection}`;
+        return `sort=${sortingArgs.fieldName},${sortingDirection.toUpperCase()}`;
     }
 
     private _buildScrollExpression(pagingArgs): string {
