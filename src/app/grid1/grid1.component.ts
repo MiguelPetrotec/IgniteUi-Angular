@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 // import { employeesData } from './localData';
 import { debounceTime, takeUntil, skip } from 'rxjs/operators';
-import { IgxGridComponent, NoopFilteringStrategy } from 'igniteui-angular';
+import { IgxGridComponent, NoopFilteringStrategy, IgxColumnComponent, IFilteringExpressionsTree } from 'igniteui-angular';
 import { Subject, Observable, Subscription, zip } from 'rxjs';
 import { RemoteFilteringService } from './services/remoteFilteringService';
 import { CustomCustomerDTO } from './models/custom-CustomerDTO';
@@ -11,6 +11,7 @@ import { PropertyDTO } from './models/properties/PropertyDTO';
 import { DataType } from './models/enum/DataType.enum';
 import { CategoriesService } from './services/categories/categoriesService.service';
 import { CategoryDTO } from './models/categories/CategoryDTO';
+import { RemoteValuesService } from './services/remoteValues.service';
 
 const DEBOUNCE_TIME = 300;
 const USAGE_CODE = 'CUSTOMER';
@@ -40,6 +41,7 @@ export class Grid1Component implements OnInit, OnDestroy {
 
   public properties: PropertyDTO[];
   public categories: CategoryDTO[];
+  public customers: CustomCustomerDTO[];
 
   // Zip subscription
 
@@ -62,7 +64,7 @@ export class Grid1Component implements OnInit, OnDestroy {
   //
 
   constructor(private remoteService: RemoteFilteringService, private renderer: Renderer2, private propertiesService: PropertiesService,
-    private categoriesService: CategoriesService) {
+    private categoriesService: CategoriesService, private remoteValuesService: RemoteValuesService) {
 
     this.remoteData = this.remoteService.remoteData.asObservable();
     this.propertyList = this.propertiesService.remoteData.asObservable();
@@ -111,6 +113,10 @@ export class Grid1Component implements OnInit, OnDestroy {
         }
       ]);
 
+      if (result[0] && result[0].length > 0) {
+        this.customers = result[0];
+      }
+
       // properties
       if (result[1] && result[1].length > 0) {
         result[1].forEach(prop => {
@@ -143,12 +149,12 @@ export class Grid1Component implements OnInit, OnDestroy {
     });
 
     this.categoriesService.getData(USAGE_CODE, (data) => {
-      this.categories = data.result.items;
+      this.categories = data ? data.result.items : [];
 
     });
 
     this.propertiesService.getData(USAGE_CODE, (data) => {
-      this.properties = data.result.items;
+      this.properties = data ? data.result.items : [];
     });
 
     // dynamic grid config
@@ -190,7 +196,7 @@ export class Grid1Component implements OnInit, OnDestroy {
       filteringExpr,
       sortingExpr,
       (data) => {
-        this.totalCount = data.result.size;
+        this.totalCount = data ? data.result.size : 0;
         this.grid.isLoading = false;
       });
 
@@ -293,6 +299,21 @@ export class Grid1Component implements OnInit, OnDestroy {
     } else {
       return val;
     }
+  }
+
+  public columnValuesStrategy = (column: IgxColumnComponent,
+    columnExprTree: IFilteringExpressionsTree,
+    done: (uniqueValues: any[]) => void) => {
+    // Get specific column data.
+    this.remoteValuesService.getColumnData(column, columnExprTree, this.customers, uniqueValues => done(uniqueValues));
+  }
+
+  public doubleClick(event) {
+    alert('Double Click!!');
+  }
+
+  public addItem() {
+    alert('New Item');
   }
 
 }

@@ -9,31 +9,44 @@
 
 
 <div class="sample-wrapper">
- 
+
 	<igx-input-group #inputGroup [igxToggleAction]="dropDown" class="input-group">
-	  <igx-prefix>
-		<flag-icon country="{{ this.selectedLanguage?.code ? (this.selectedLanguage?.code === 'en' ? 'gb' : this.selectedLanguage?.code) : '' }}">
-		</flag-icon>
-	  </igx-prefix>
-	  <input 
-		#lang class="input" type="text" igxInput [igxDropDownItemNavigation]="dropDown" readonly="true"
-		placeholder="choose an option" 
-		value="{{ this.selectedLanguage?.label | translate}}"
-		(keydown.ArrowDown)="openDropDown()"  />
-  
-	  <igx-suffix igxButton="icon" class="dropdownToggleButton" igxRipple>
-		<igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
-	  </igx-suffix>
+		<igx-prefix>
+			<flag-icon
+				country="{{ this.selectedLanguage?.code ? (this.selectedLanguage?.code === 'en' ? 'gb' : this.selectedLanguage?.code) : '' }}">
+			</flag-icon>
+		</igx-prefix>
+		<input #lang class="input" type="text" igxInput [igxDropDownItemNavigation]="dropDown" readonly="true"
+			placeholder="choose an option" value="{{ this.selectedLanguage?.label | translate}}"
+			(keydown.ArrowDown)="openDropDown()" />
+
+		<igx-suffix igxButton="icon" class="dropdownToggleButton" igxRipple>
+			<igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
+		</igx-suffix>
 	</igx-input-group>
-	
+
 	<igx-drop-down #dropDown [width]="'180px'" (onClosing)='checkLangChange()'>
-	  <igx-drop-down-item *ngFor="let item of languages" [value]="item.value">
-		<flag-icon country="{{item.value?.code ? (item.value?.code === 'en' ? 'gb' : item.value?.code) : '' }}">
-		</flag-icon> {{ item.value.label | translate}}
-	  </igx-drop-down-item>
+		<igx-drop-down-item *ngFor="let item of languages" [value]="item.value">
+			<flag-icon country="{{item.value?.code ? (item.value?.code === 'en' ? 'gb' : item.value?.code) : '' }}">
+			</flag-icon> <span></span>{{ item.value.label | translate}}
+		</igx-drop-down-item>
 	</igx-drop-down>
-  </div>
+	<br />
+	<br />
+	<igx-select [(ngModel)]="selectedLanguage" (onSelection)='handleSelection($event)'>
+		<igx-prefix>
+			<flag-icon
+				country="{{ selectedLanguage?.code ? (selectedLanguage?.code === 'en' ? 'gb' : selectedLanguage?.code) : '' }}">
+			</flag-icon>
+		</igx-prefix>
+		<igx-select-item *ngFor="let item of languages" [value]="item.value">
+			<flag-icon country="{{item.value?.code ? (item.value?.code === 'en' ? 'gb' : item.value?.code) : '' }}">
+			</flag-icon>
+			<span></span>{{ item.value.label }}
+		</igx-select-item>
+	</igx-select>
 
-  <!-- selected : {{this.selectedLanguage | json}}
+</div>
+
+<!-- selected : {{this.selectedLanguage | json}}
   country: <flag-icon country='gb'></flag-icon> -->
-

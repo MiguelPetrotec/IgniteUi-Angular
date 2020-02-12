@@ -1,47 +1,47 @@
-<igx-grid #grid [data]="remoteData | async" [primaryKey]="'code'" width="1200px" height="550px" rowSelection="multiple"
-  [paging]="true" [perPage]="perPage" [columnPinning]="true" [columnHiding]="true" [showToolbar]="true"
-  toolbarTitle="Employees" [allowFiltering]="true" [filterMode]="'excelStyleFilter'" [autoGenerate]="false"
-  [filterStrategy]="noopFilterStrategy" [paginationTemplate]="customPager">
-  <!-- <igx-column field="code" header="Code"  width="150px" dataType="text" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="false">
-  </igx-column>
-  <igx-column field="name" header="Full Name" width="150px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [pinned]="false" [hidden]="true">
-  </igx-column>
-  <igx-column field="customerCode" header="Customer Code" width="140px" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
-  </igx-column>
-  <igx-column field="vatin" header="VAT IN" width="110px" dataType="number" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
-  </igx-column>
-  <igx-column field="statusCode" header="Status Code" width="110px" dataType="text" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true" [groupable]="true">
-  </igx-column>
-  <igx-column field="birthday" header="Birthday" width="180px" dataType="date" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
+<div class="sample-wrapper">
+  <igx-grid #grid [data]="remoteData | async" [primaryKey]="'code'" width="100%" height="100%"
+    [uniqueColumnValuesStrategy]="columnValuesStrategy" rowSelection="multiple" [paging]="true" [perPage]="perPage"
+    [columnPinning]="true" [columnHiding]="true" [showToolbar]="true" toolbarTitle="Employees" [allowFiltering]="true"
+    [filterMode]="'excelStyleFilter'" [autoGenerate]="false" [filterStrategy]="noopFilterStrategy"
+    [paginationTemplate]="customPager" (onDoubleClick)="doubleClick($event)">
+    <!-- <igx-column field="birthday" header="Birthday" width="180px" dataType="date" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
     <ng-template igxCell let-value>
         {{ value | date }}
     </ng-template>
   </igx-column> -->
-  <igx-column *ngFor="let col of this.gridConfig" [field]="col.field" [header]="col.header" [width]="col.width"
-    [dataType]="col.dataType" [sortable]="col.sortable" [filterable]="col.filterable" [resizable]="col.resizable"
-    [movable]="col.movable" [groupable]="col.groupable" [pinned]="col.pinned" [hidden]="col.hidden">
-    <ng-template igxCell let-value *ngIf="col.type ==='date'">
-      {{ value | date:'dd/MM/yyyy' }}
-    </ng-template>
-    <ng-template igxCell let-cell="cell" *ngIf="col.type ==='prop'">
+    <igx-column *ngFor="let col of this.gridConfig" [field]="col.field" [header]="col.header" [width]="col.width"
+      [dataType]="col.dataType" [sortable]="col.sortable" [filterable]="col.filterable" [resizable]="col.resizable"
+      [movable]="col.movable" [groupable]="col.groupable" [pinned]="col.pinned" [hidden]="col.hidden">
+      <ng-template igxCell let-value *ngIf="col.type ==='date'">
+        {{ value | date:'dd/MM/yyyy' }}
+      </ng-template>
+      <ng-template igxCell let-cell="cell" *ngIf="col.type ==='prop'">
 
-      {{ cell.row.rowData['properties'] ? cell.row.rowData['properties'][col.code] : ''}}
-    </ng-template>
-    <ng-template igxCell let-value let-cell="cell" *ngIf="col.type ==='cat'">
-      {{ cell.row.rowData['categories'] ? this.getCategoryValue(col.code, cell.row.rowData['categories'][col.code]) : ''}}
-    </ng-template>
-    <ng-template igxCell let-value *ngIf="col.type !=='date' && col.type !=='cat' && col.type !=='prop'">
-      {{ value }}
-    </ng-template>
-  </igx-column>
-  <!-- <igx-column field="IsActive" header="Is Active" width="140px" dataType="boolean" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
+        {{ cell.row.rowData['properties'] ? cell.row.rowData['properties'][col.code] : ''}}
+      </ng-template>
+      <ng-template igxCell let-value let-cell="cell" *ngIf="col.type ==='cat'">
+        {{ cell.row.rowData['categories'] ? this.getCategoryValue(col.code, cell.row.rowData['categories'][col.code]) : ''}}
+      </ng-template>
+      <ng-template igxCell let-value *ngIf="col.type !=='date' && col.type !=='cat' && col.type !=='prop'">
+        {{ value }}
+      </ng-template>
+    </igx-column>
+    <!-- <igx-column field="IsActive" header="Is Active" width="140px" dataType="boolean" [sortable]="true" [filterable]="true" [resizable]="true" [movable]="true">
     <ng-template igxCell let-cell="cell">
       <igx-checkbox [checked]="cell.value" [disabled]="true"></igx-checkbox>
     </ng-template>
   </igx-column> -->
-</igx-grid>
-<ng-template #customPager let-api>
-  <igx-paginator #paginator [totalRecords]="totalCount" [(perPage)]="perPage" [selectLabel]="'Records per page:'"
-    [selectOptions]="selectOptions" [displayDensity]="grid.displayDensity" (pageChange)="paginate($event)">
-  </igx-paginator>
-</ng-template>
+    <ng-template igxToolbarCustomContent let-igxGrid="grid">
+      <button igxButton="flat" igxRipple igxRippleCentered="true" (click)="addItem()" style="float:left">
+        <igx-icon fontSet="material">add</igx-icon>
+        ADD
+      </button>
+       <!-- <igx-buttongroup [values]="displayDensities" (onSelect)="selectDensity($event)"></igx-buttongroup> -->
+    </ng-template>
+  </igx-grid>
+  <ng-template #customPager let-api>
+    <igx-paginator #paginator [totalRecords]="totalCount" [(perPage)]="perPage" [selectLabel]="'Records per page:'"
+      [selectOptions]="selectOptions" [displayDensity]="grid.displayDensity" (pageChange)="paginate($event)">
+    </igx-paginator>
+  </ng-template>
+</div>

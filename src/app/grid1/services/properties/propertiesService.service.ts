@@ -31,13 +31,24 @@ export class PropertiesService {
 
     const baseQueryString = `${DATA_URL}?usageCode=${usageCode}`;
 
-    return this._http.get(baseQueryString, { headers }).subscribe((data: any) => {
-      // console.dir(data);
-      this.remoteData.next(data.result.items);
-      if(cb){
-        cb(data);
+    return this._http.get(baseQueryString, { headers }).subscribe(
+      (data: any) => {
+        // console.dir(data);
+        const result = data ? data.result.items : [];
+        this.remoteData.next(result);
+        if (cb) {
+          cb(data);
+        }
+      },
+      error => {
+        console.log('Properties Service error');
+        // return undefined;
+        this.remoteData.next(undefined);
+        if (cb) {
+          cb(undefined);
+        }
       }
-    });
+    );
   }
 
 }

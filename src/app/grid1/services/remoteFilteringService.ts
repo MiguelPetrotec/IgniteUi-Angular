@@ -40,6 +40,7 @@ export class RemoteFilteringService {
 
         let filterQuery = EMPTY_STRING;
         let filter = EMPTY_STRING;
+        let orderQuery = EMPTY_STRING;
 
         if (filteringArgs && filteringArgs.length > 0) {
             filteringArgs.forEach((columnFilter) => {
@@ -55,6 +56,10 @@ export class RemoteFilteringService {
             filterQuery = `${filter}`;
         }
 
+        if (sortingArgs) {
+            orderQuery = this._buildSortExpression(sortingArgs);
+        }
+
         let headers = new HttpHeaders({
 
             'Content-type': 'application/json',
@@ -67,43 +72,58 @@ export class RemoteFilteringService {
             headers = headers.append('query', filterQuery);
         }
 
+        if (orderQuery.length > 0) {
+            headers = headers.append('sort', orderQuery);
+        }
+
         return this._http.get(this.buildDataUrl(
             paging, filteringArgs, sortingArgs, headers), { headers }).pipe(map((resp: any) => {
 
-                resp.result.items.forEach( item =>{
+                resp.result.items.forEach(item => {
                     item.birthday = new Date(item.birthday);     // moment(item.birthday, 'YYYY-MM-DD');
                     return item;
                 });
                 // console.log(item.birthDay);
                 return resp;
-            })).subscribe((data: any) => {
-                // console.dir(data);
-                // data.result.items.pipe(map((item: any) => {
-                //     console.log(item.birthDay);
-                //     item.birthDay = moment(item.birthDay);
-                //     return item;
-                // }));
-                this.remoteData.next(data.result.items);
-                if (cb) {
-                    cb(data);
+            })).subscribe(
+                (data: any) => {
+                    // console.dir(data);
+                    // data.result.items.pipe(map((item: any) => {
+                    //     console.log(item.birthDay);
+                    //     item.birthDay = moment(item.birthDay);
+                    //     return item;
+                    // }));
+                    const result = data ? data.result.items : [];
+                    this.remoteData.next(result);
+                    if (cb) {
+                        cb(data);
+                    }
+                },
+                error => {
+                    console.log('Customer Service error');
+                    // return undefined;
+                    this.remoteData.next(undefined);
+                    if (cb) {
+                        cb(undefined);
+                      }
                 }
-            });
+            );
     }
 
     private buildDataUrl(pagingArgs: any, filteringArgs: any, sortingArgs: any, header: HttpHeaders): string {
         // let baseQueryString = `${DATA_URL}?$count=true`;
         let baseQueryString = `${DATA_URL}?`;
         let scrollingQuery = EMPTY_STRING;
-        let orderQuery = EMPTY_STRING;
+        // let orderQuery = EMPTY_STRING;
         // let filterQuery = EMPTY_STRING;
         let query = EMPTY_STRING;
         // let filter = EMPTY_STRING;
 
-        console.dir(sortingArgs);
+        // console.dir(sortingArgs);
 
-        if (sortingArgs) {
-            orderQuery = this._buildSortExpression(sortingArgs);
-        }
+        // if (sortingArgs) {
+        //     orderQuery = this._buildSortExpression(sortingArgs);
+        // }
 
         // if (filteringArgs && filteringArgs.length > 0) {
         //     filteringArgs.forEach((columnFilter) => {
@@ -127,7 +147,7 @@ export class RemoteFilteringService {
             scrollingQuery = this._buildScrollExpression(pagingArgs);
         }
 
-        query += (orderQuery !== EMPTY_STRING) ? `&${orderQuery}` : EMPTY_STRING;
+        // query += (orderQuery !== EMPTY_STRING) ? `&${orderQuery}` : EMPTY_STRING;
         // query += (filterQuery !== EMPTY_STRING) ? `&${filterQuery}` : EMPTY_STRING;
         query += (scrollingQuery !== EMPTY_STRING) ? `&${scrollingQuery}` : EMPTY_STRING;
 
@@ -227,7 +247,8 @@ export class RemoteFilteringService {
             }
         }
 
-        return `sort=${sortingArgs.fieldName},${sortingDirection.toUpperCase()}`;
+        // return `sort=${sortingArgs.fieldName},${sortingDirection.toUpperCase()}`;
+        return `${sortingArgs.fieldName},${sortingDirection.toUpperCase()}`;
     }
 
     private _buildScrollExpression(pagingArgs): string {

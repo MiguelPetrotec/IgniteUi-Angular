@@ -1,5 +1,7 @@
 export enum DataType {
     TEXT = 'text',
     NUMERIC = 'number',
-    DATE = 'date'
+    DATE = 'date',
+    BOOLEAN = 'boolean',
+    ENUM = 'enum'
 }

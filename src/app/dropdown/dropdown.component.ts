@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
-    IgxDropDownComponent, IgxInputGroupComponent, ConnectedPositioningStrategy
+    IgxDropDownComponent, IgxInputGroupComponent, ConnectedPositioningStrategy, IgxSelectComponent
 } from 'igniteui-angular';
 import { data } from './local-data';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,6 +15,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class DropDownComponent implements OnInit {
     @ViewChild(IgxDropDownComponent, { static: true }) public igxDropDown: IgxDropDownComponent;
     @ViewChild('inputGroup', { read: IgxInputGroupComponent, static: true }) public inputGroup: IgxInputGroupComponent;
+    @ViewChild(IgxSelectComponent, { static: true })
+    public igxSelect: IgxSelectComponent;
 
     public items: any[] = [];
     public languages: Array<{ label: string, value: { label: string, code: string } }>;
@@ -22,12 +24,20 @@ export class DropDownComponent implements OnInit {
 
     constructor(private translate: TranslateService) {
 
-    //     this.languages = [
-    //         { label: 'pt', value: { label: 'Languages.Portuguese', code: 'pt' } },
-    //         { label: 'en', value: { label: 'Languages.English', code: 'en' } },
-    //         { label: 'es', value: { label: 'Languages.Spanish', code: 'es' } },
-    //         { label: 'dev', value: { label: 'Languages.Dev', code: 'dev' } }
-    //     ];
+        //     this.languages = [
+        //         { label: 'pt', value: { label: 'Languages.Portuguese', code: 'pt' } },
+        //         { label: 'en', value: { label: 'Languages.English', code: 'en' } },
+        //         { label: 'es', value: { label: 'Languages.Spanish', code: 'es' } },
+        //         { label: 'dev', value: { label: 'Languages.Dev', code: 'dev' } }
+        //     ];
+    }
+
+    public selected: any = '';
+
+    public clearSelection(event: MouseEvent) {
+        this.selected = '';
+        // prevent the drop-down container from opening
+        event.stopPropagation();
     }
 
     checkLangChange() {
@@ -79,5 +89,11 @@ export class DropDownComponent implements OnInit {
                 })
             });
         }
+    }
+
+    public handleSelection(event){
+    // console.dir(this.selectedLanguage);
+    console.dir(event.newSelection.value);
+
     }
 }

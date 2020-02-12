@@ -23,6 +23,7 @@ import { RemoteFilteringService } from './grid1/services/remoteFilteringService'
 import { HttpClientModule } from '@angular/common/http';
 import { PropertiesService } from './grid1/services/properties/propertiesService.service';
 import { CategoriesService } from './grid1/services/categories/categoriesService.service';
+import { RemoteValuesService } from './grid1/services/remoteValues.service';
 
 
 
@@ -66,7 +67,7 @@ registerLocaleData(localePtPt);
     HttpClientModule,
     IgxToastModule
   ],
-  providers: [RemoteFilteringService, PropertiesService, CategoriesService],
+  providers: [RemoteFilteringService, PropertiesService, CategoriesService, RemoteValuesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
