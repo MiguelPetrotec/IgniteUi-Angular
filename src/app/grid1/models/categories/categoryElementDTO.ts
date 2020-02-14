@@ -5,7 +5,7 @@ export interface CategoryElementDTO {
     description: string;
     categoryDescription: string;
     detailedDescription: string[];
-    elements: string[];
+    elements: CategoryElementDTO[];
     itemAllowed: boolean;
     associatedItems: number;
     createdOn: string;

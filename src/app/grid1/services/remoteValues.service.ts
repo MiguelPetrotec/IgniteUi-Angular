@@ -11,9 +11,10 @@ export class RemoteValuesService {
     }
 
     public getColumnData(column: IgxColumnComponent,
-        columnExprTree: IFilteringExpressionsTree,
-        data: any[],
-        done: (colVals: any[]) => void) {
+                         columnExprTree: IFilteringExpressionsTree,
+                         data: any[],
+                         done: (colVals: any[]) => void,
+                         subCatList?: any[], ) {
         setTimeout(() => {
             let field = '';
             const filteredData = this._filteringStrategy.filter(data, columnExprTree);
@@ -31,6 +32,37 @@ export class RemoteValuesService {
                     }
                 }
                 ).map(x => x[propertyCode]);
+            } else if (column.field.toLowerCase().startsWith('categories')) {
+                field = 'categories';
+                let tempValues: any[];
+                const categoryCode = column.field.substring(
+                    column.field.lastIndexOf('[') + 1,
+                    column.field.lastIndexOf(']')
+                );
+                tempValues = filteredData.map(record => record[field]).filter(prop => {
+                    if (prop[categoryCode]) {
+                        return true;
+                    }
+                }
+                ).map(x => x[categoryCode]);
+
+                if (subCatList && subCatList.length > 0) {
+
+                    columnValues = tempValues.map( subCat => {
+
+                        const category = subCatList.find(cat => cat.code === categoryCode);
+                        if (category) {
+                          const idx = category.categoryElements.findIndex(catElem => catElem.code === subCat);
+                          if (idx >= 0) {
+                            return category.categoryElements[idx].detailedDescription['en-en']; // replace with the current locale code
+                          }
+                        }
+                    });
+                } else {
+                    columnValues = tempValues;
+                }
+
+
             } else {
                 field = column.field;
                 columnValues = filteredData.map(record => record[field]);

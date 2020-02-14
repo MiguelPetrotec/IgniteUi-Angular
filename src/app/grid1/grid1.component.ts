@@ -305,7 +305,7 @@ export class Grid1Component implements OnInit, OnDestroy {
     columnExprTree: IFilteringExpressionsTree,
     done: (uniqueValues: any[]) => void) => {
     // Get specific column data.
-    this.remoteValuesService.getColumnData(column, columnExprTree, this.customers, uniqueValues => done(uniqueValues));
+    this.remoteValuesService.getColumnData(column, columnExprTree, this.customers, uniqueValues => done(uniqueValues), this.categories);
   }
 
   public doubleClick(event) {

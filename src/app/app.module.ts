@@ -4,9 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import {
-  IgxButtonModule, IgxCheckboxModule, IgxComboModule, IgxDatePickerModule, IgxBadgeModule, IgxToastModule,
-  IgxDropDownModule, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxLayoutModule,
-  IgxNavbarModule, IgxNavigationDrawerModule, IgxRippleModule, IgxSelectModule, IgxTimePickerModule, IgxToggleModule
+   IgxButtonModule, IgxCheckboxModule, IgxComboModule, IgxDatePickerModule, IgxBadgeModule, IgxToastModule,
+   IgxDropDownModule, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxLayoutModule,
+   IgxNavbarModule, IgxNavigationDrawerModule, IgxRippleModule, IgxSelectModule,
+   IgxTimePickerModule, IgxToggleModule, IgxSwitchModule, IgxTabsModule
 } from 'igniteui-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,51 +25,62 @@ import { HttpClientModule } from '@angular/common/http';
 import { PropertiesService } from './grid1/services/properties/propertiesService.service';
 import { CategoriesService } from './grid1/services/categories/categoriesService.service';
 import { RemoteValuesService } from './grid1/services/remoteValues.service';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 
 
 registerLocaleData(localePtPt);
 
 @NgModule({
-  declarations: [
-
-    AppComponent,
-    HomeComponent,
-    Grid1Component,
-    LoginComponent,
-    InputGroupComponent,
-    DropDownComponent
-  ],
-  imports: [
-    FormsModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    IgxNavigationDrawerModule,
-    IgxNavbarModule,
-    IgxLayoutModule,
-    IgxRippleModule,
-    IgxGridModule,
-    IgxCheckboxModule,
-    IgxInputGroupModule,
-    IgxIconModule,
-    IgxButtonModule,
-    ReactiveFormsModule,
-    IgxComboModule,
-    IgxDatePickerModule,
-    IgxTimePickerModule,
-    IgxSelectModule,
-    IgxDropDownModule,
-    IgxToggleModule,
-    TranslateModule.forRoot(),
-    LanguageTranslationModule,
-    NgxFlagIconCssModule,
-    IgxBadgeModule,
-    HttpClientModule,
-    IgxToastModule
-  ],
-  providers: [RemoteFilteringService, PropertiesService, CategoriesService, RemoteValuesService],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      HomeComponent,
+      Grid1Component,
+      LoginComponent,
+      InputGroupComponent,
+      DropDownComponent,
+      ReactiveFormComponent,
+      ReactiveFormComponent
+   ],
+   imports: [
+      FormsModule,
+      BrowserModule,
+      BrowserAnimationsModule,
+      AppRoutingModule,
+      IgxNavigationDrawerModule,
+      IgxNavbarModule,
+      IgxLayoutModule,
+      IgxRippleModule,
+      IgxGridModule,
+      IgxCheckboxModule,
+      IgxInputGroupModule,
+      IgxIconModule,
+      IgxButtonModule,
+      ReactiveFormsModule,
+      IgxComboModule,
+      IgxDatePickerModule,
+      IgxTimePickerModule,
+      IgxSelectModule,
+      IgxDropDownModule,
+      IgxToggleModule,
+      TranslateModule.forRoot(),
+      LanguageTranslationModule,
+      NgxFlagIconCssModule,
+      IgxBadgeModule,
+      HttpClientModule,
+      IgxToastModule,
+      IgxSwitchModule,
+      IgxTabsModule
+   ],
+   providers: [
+      RemoteFilteringService,
+      PropertiesService,
+      CategoriesService,
+      RemoteValuesService
+   ],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule {
 }

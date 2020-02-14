@@ -9,6 +9,7 @@ import { Grid1Component } from './grid1/grid1.component';
 import { LoginComponent } from './login/login.component';
 import { InputGroupComponent } from './inputgroup/inputgroup.component';
 import { DropDownComponent } from './dropdown/dropdown.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { text: 'login' } },
   { path: 'inputgroup', component: InputGroupComponent, data: { text: 'inputGroup' } },
   { path: 'dropdown', component: DropDownComponent, data: { text: 'dropDown' } },
+  { path: 'reactiveform', component: ReactiveFormComponent, data: { text: 'reactive Form' } },
   { path: '**', component: PageNotFoundComponent } // must always be last
 ];
 

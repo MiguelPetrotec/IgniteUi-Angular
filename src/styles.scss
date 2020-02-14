@@ -19,6 +19,7 @@ $app-palette: igx-palette($primary, $secondary);
 
 html, body {
   height: 100%;
+  // test margin: 0px;
 }
 .content p {
   margin: 15px;
@@ -29,6 +30,10 @@ app-inputgroup {
 }
 
 app-grid1 {
+  width: 100%;
+}
+
+app-reactive-form {
   width: 100%;
 }
 
