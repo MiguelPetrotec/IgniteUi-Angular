@@ -2,179 +2,199 @@
   <igx-tabs-group label="BASIC DATA" icon="person">
     <div class="sample-wrapper">
       <section class="sample-content">
-        <div class="sample-column">
-          <h6 class="sample-title">Basic</h6>
-          <div class="layout-sample">
-            <div class="layout-box" igxLayout igxLayoutDir="row" igxLayoutWrap="wrap">
-              <div class="layout-box__el" igxFlex igxFlexGrow="1">
-                <igx-input-group >
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                <input igxInput name="customer" type="text" required="required"  />
-                  <label igxLabel for="customer">Customer</label>
-                  <igx-suffix>
-                    <igx-icon>assignment_ind</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
+
+        <!-- <div class="layout-box" igxLayout igxLayoutDir="row"> -->
+        <div class="layout-box" igxLayout igxLayoutDir="row" igxLayoutWrap="wrap">
+          <div class="sample-column">
+            <!-- <div class="sample-column" igxLayout igxLayoutDir="row" igxLayoutWrap="wrap"> -->
+            <!-- <h6 class="sample-title">Basic</h6> -->
+            <div class="layout-sample" igxFlex>
+              <div class="layout-box" igxFlex>
+                <h6 class="sample-title">Basic</h6>
+                <div class="layout-box__el" igxFlex igxFlexGrow="1">
+                  <igx-input-group>
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                    <input igxInput name="customer" type="text" required="required" />
+                    <igx-prefix>
+                      <igx-icon>assignment_ind</igx-icon>
+                    </igx-prefix>
+                    <label igxLabel for="customer">Customer</label>
+                  </igx-input-group>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="1">
+                  <igx-input-group>
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                    <input igxInput name="VatIN" type="text" required="required" />
+                    <label igxLabel for="VatIN">VatIN</label>
+                    <igx-prefix>
+                      <igx-icon>account_balance</igx-icon>
+                    </igx-prefix>
+                  </igx-input-group>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="1">
+                  <igx-input-group>
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                    <input igxInput name="fullName" type="text" required="required" />
+                    <label igxLabel for="fullName">Full Name</label>
+                    <igx-prefix>
+                      <igx-icon>person</igx-icon>
+                    </igx-prefix>
+                  </igx-input-group>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="1">
+                  <div class="component-container">
+                    <igx-date-picker name="birthday" label='Birthday' (onSelection)="onDateSelection($event)"
+                      cancelButtonLabel="close" todayButtonLabel="today"></igx-date-picker>
+                  </div>
+                </div>
               </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <igx-input-group>
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                  <input igxInput name="VatIN" type="text" required="required" />
-                  <label igxLabel for="VatIN">VatIN</label>
-                  <igx-suffix>
-                    <igx-icon>account_balance</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
-              </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="1">
-                <igx-input-group>
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                  <input igxInput name="fullName" type="text" required="required" />
-                  <label igxLabel for="fullName">Full Name</label>
-                  <igx-suffix>
-                    <igx-icon>person</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
-              </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <div class="component-container">
-                  <igx-date-picker name="birthday" label='Birthday' (onSelection)="onDateSelection($event)"
-                    cancelButtonLabel="close" todayButtonLabel="today"></igx-date-picker>
+            </div>
+          </div>
+          <div class="sample-column" igxLayout igxLayoutDir="row" igxLayoutWrap="wrap">
+            <!-- <h6 class="sample-title">Contact Info</h6> -->
+            <div class="layout-sample" igxFlex>
+              <div class="layout-box" igxFlex>
+                <h6 class="sample-title">Contact Info</h6>
+                <div class="layout-box__el" igxFlex igxFlexGrow="1">
+                  <igx-input-group>
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                    <input igxInput name="contactName" type="text" required="required" />
+                    <label igxLabel for="contactName">Contact Name</label>
+                    <igx-prefix>
+                      <igx-icon>contacts</igx-icon>
+                    </igx-prefix>
+                  </igx-input-group>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="1">
+                  <igx-input-group>
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                    <input igxInput name="phone" type="text" required="required" />
+                    <label igxLabel for="phone">Phone</label>
+                    <igx-prefix>
+                      <igx-icon>contact_phone</igx-icon>
+                    </igx-prefix>
+                  </igx-input-group>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="1">
+                  <igx-input-group>
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                    <input igxInput name="email" type="text" required="required" />
+                    <label igxLabel for="email">Email</label>
+                    <igx-prefix>
+                      <igx-icon>contact_mail</igx-icon>
+                    </igx-prefix>
+                  </igx-input-group>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="1">
+                  <igx-input-group>
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                    <input igxInput name="mobile" type="text" required="required" />
+                    <label igxLabel for="mobile">Mobile</label>
+                    <igx-prefix>
+                      <igx-icon>smartphone</igx-icon>
+                    </igx-prefix>
+                  </igx-input-group>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="sample-column">
-          <h6 class="sample-title">Contact Info</h6>
-          <div class="layout-sample">
-            <div class="layout-box" igxLayout igxLayoutDir="row" igxLayoutWrap="wrap">
-              <div class="layout-box__el" igxFlex igxFlexGrow="1">
-                <igx-input-group>
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                  <input igxInput name="contactName" type="text" required="required" />
-                  <label igxLabel for="contactName">Contact Name</label>
-                  <igx-suffix>
-                    <igx-icon>contacts</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
-              </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <igx-input-group>
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                  <input igxInput name="phone" type="text" required="required" />
-                  <label igxLabel for="phone">Phone</label>
-                  <igx-suffix>
-                    <igx-icon>contact_phone</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
-              </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="1">
-                <igx-input-group>
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                  <input igxInput name="email" type="text" required="required" />
-                  <label igxLabel for="email">Email</label>
-                  <igx-suffix>
-                    <igx-icon>contact_mail</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
-              </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <igx-input-group>
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                  <input igxInput name="mobile" type="text" required="required" />
-                  <label igxLabel for="mobile">Mobile</label>
-                  <igx-suffix>
-                    <igx-icon>smartphone</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sample-column">
-          <h6 class="sample-title">Categories</h6>
-          <div class="layout-sample">
-            <div class="layout-box" igxLayout igxLayoutDir="row" igxLayoutWrap="wrap">
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <igx-combo #withValueKey [data]="this.categoriesFlat[3]" valueKey="itemCode" displayKey="itemCode" groupKey="groupCode"
-                [(ngModel)]="selectedValueKey" type="line" (onSearchInput)='handleSearchInputEvent($event)'
-                placeholder="Category" searchPlaceholder="Search..." (onOpening)="handleSearchInputEvent('')"
-                (onSelectionChange)="singleSelection($event)">
-            </igx-combo>
-              </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <igx-input-group>
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                  <input igxInput name="VatIN" type="text" required="required" />
-                  <label igxLabel for="VatIN">VatIN</label>
-                  <igx-suffix>
-                    <igx-icon>account_balance</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
-              </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <igx-input-group>
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                  <input igxInput name="fullName" type="text" required="required" />
-                  <label igxLabel for="fullName">Full Name</label>
-                  <igx-suffix>
-                    <igx-icon>person</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
-              </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <div class="component-container">
-                  <igx-date-picker name="birthday" label='Birthday' (onSelection)="onDateSelection($event)"
-                    cancelButtonLabel="close" todayButtonLabel="today"></igx-date-picker>
+
+        <div class="layout-box" igxLayout igxLayoutDir="row" igxLayoutWrap="wrap"> 
+
+          <div class="sample-column" >
+            <!-- <h6 class="sample-title">Categories</h6> -->
+            <div class="layout-sample" igxFlex>
+              <div class="layout-box" igxFlex>
+                <h6 class="sample-title">Categories</h6>
+                <div class="layout-box__el" igxFlex igxFlexGrow="0">
+                  <igx-combo #withValueKey [data]="this.categoriesFlat[3]" valueKey="itemCode" displayKey="itemDesc" groupKey="groupCodeDesc"
+                  [(ngModel)]="selectedValueKey" type="line" (onSearchInput)='handleSearchInputEvent($event)'
+                  placeholder="Category" searchPlaceholder="Search..." (onOpening)="handleSearchInputEvent('')"
+                  (onSelectionChange)="singleSelection($event)">
+              </igx-combo>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="0">
+                  <igx-input-group>
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                    <input igxInput name="VatIN" type="text" required="required" />
+                    <label igxLabel for="VatIN">VatIN</label>
+                    <igx-prefix>
+                      <igx-icon>account_balance</igx-icon>
+                    </igx-prefix>
+                  </igx-input-group>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="0">
+                  <igx-input-group>
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                    <input igxInput name="fullName" type="text" required="required" />
+                    <label igxLabel for="fullName">Full Name</label>
+                    <igx-prefix>
+                      <igx-icon>person</igx-icon>
+                    </igx-prefix>
+                  </igx-input-group>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="0">
+                  <div class="component-container">
+                    <igx-date-picker name="birthday" label='Birthday' (onSelection)="onDateSelection($event)"
+                      cancelButtonLabel="close" todayButtonLabel="today"></igx-date-picker>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="sample-column">
-          <h6 class="sample-title">Basic</h6>
-          <div class="layout-sample">
-            <div class="layout-box" igxLayout igxLayoutDir="row" igxLayoutWrap="wrap">
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <igx-input-group >
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                <input igxInput name="customer" type="text" required="required"  />
-                  <label igxLabel for="customer">Customer</label>
-                  <igx-suffix>
-                    <igx-icon>assignment_ind</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
-              </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <igx-input-group>
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                  <input igxInput name="VatIN" type="text" required="required" />
-                  <label igxLabel for="VatIN">VatIN</label>
-                  <igx-suffix>
-                    <igx-icon>account_balance</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
-              </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <igx-input-group>
-                  <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-                  <input igxInput name="fullName" type="text" required="required" />
-                  <label igxLabel for="fullName">Full Name</label>
-                  <igx-suffix>
-                    <igx-icon>person</igx-icon>
-                  </igx-suffix>
-                </igx-input-group>
-              </div>
-              <div class="layout-box__el" igxFlex igxFlexGrow="0">
-                <div class="component-container">
-                  <igx-date-picker name="birthday" label='Birthday' (onSelection)="onDateSelection($event)"
-                    cancelButtonLabel="close" todayButtonLabel="today"></igx-date-picker>
+          <div class="sample-column">
+            <h6 class="sample-title">Basic</h6>
+            <div class="layout-sample">
+              <div class="layout-box" igxLayout igxLayoutDir="row" igxLayoutWrap="wrap">
+                <div class="layout-box__el" igxFlex igxFlexGrow="0">
+                  <igx-input-group >
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                  <input igxInput name="customer" type="text" required="required"  />
+                    <label igxLabel for="customer">Customer</label>
+                    <igx-suffix>
+                      <igx-icon>assignment_ind</igx-icon>
+                    </igx-suffix>
+                  </igx-input-group>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="0">
+                  <igx-input-group>
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                    <input igxInput name="VatIN" type="text" required="required" />
+                    <label igxLabel for="VatIN">VatIN</label>
+                    <igx-suffix>
+                      <igx-icon>account_balance</igx-icon>
+                    </igx-suffix>
+                  </igx-input-group>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="0">
+                  <igx-input-group>
+                    <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
+                    <input igxInput name="fullName" type="text" required="required" />
+                    <label igxLabel for="fullName">Full Name</label>
+                    <igx-suffix>
+                      <igx-icon>person</igx-icon>
+                    </igx-suffix>
+                  </igx-input-group>
+                </div>
+                <div class="layout-box__el" igxFlex igxFlexGrow="0">
+                  <div class="component-container">
+                    <igx-date-picker name="birthday" label='Birthday' (onSelection)="onDateSelection($event)"
+                      cancelButtonLabel="close" todayButtonLabel="today"></igx-date-picker>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+  
+  
+  
+          </div>
+
+
+
+
+
       </section>
     </div>
   </igx-tabs-group>
