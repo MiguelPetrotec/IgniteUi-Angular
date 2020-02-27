@@ -1,10 +1,10 @@
 <div class="sample-wrapper">
-    <form class="input-group-form">
-        <!-- <form class="input-group-form" [formGroup]="contactForm"> -->
+    <!-- <form class="input-group-form"> -->
+        <form class="input-group-form" [formGroup]="contactForm">
         <h4 class="sample-title">Book your movie ticket</h4>
         <div class="component-container">
             <!-- <igx-select #select name="movies" [(ngModel)]="user.movie" formControlName="movie"> -->
-            <igx-select #select name="movies" [(ngModel)]="user.movie">
+            <igx-select #select name="movies" formControlName="movie">
                 <igx-select-item-group *ngFor="let genre of genres" [label]="genre.type">
                     <igx-select-item *ngFor="let movie of genre.movies" [value]="movie">
                         {{ movie }}
@@ -18,7 +18,7 @@
         </div>
         <igx-input-group>
             <!-- <input igxInput name="fullName" type="text" formControlName="fullName"/> -->
-            <input igxInput name="fullName" type="text" [(ngModel)]="user.fullName" required="required" />
+            <input igxInput name="fullName" type="text" formControlName="fullName" required="required" />
             <label igxLabel for="fullName">Full Name</label>
             <igx-suffix>
                 <igx-icon>person</igx-icon>
@@ -28,7 +28,7 @@
             <igx-prefix>+359</igx-prefix>
             <label igxLabel for="phone">Phone</label>
             <!-- <input igxInput name="phone" type="text" [(ngModel)]="user.phone" formControlName="phone"/> -->
-            <input igxInput name="phone" type="text" [(ngModel)]="user.phone" />
+            <input igxInput name="phone" type="text" formControlName="phone" />
             <igx-suffix>
                 <igx-icon>phone</igx-icon>
             </igx-suffix>
@@ -37,7 +37,7 @@
         <igx-input-group>
             <label igxLabel for="email">Email address</label>
             <!-- <input igxInput name="email" type="email" [(ngModel)]="user.email" required formControlName="email"/> -->
-            <input igxInput name="email" type="email" [(ngModel)]="user.email" required />
+            <input igxInput name="email" type="email" formControlName="email" required />
             <igx-suffix>
                 <igx-icon>email</igx-icon>
             </igx-suffix>
@@ -48,10 +48,18 @@
                 placeholder="Select your favorite genres" searchPlaceholder="Search..." required [type]='"line"' formControlName="genres">
             </igx-combo> -->
             <igx-combo #combo1 name="genres" class="input-container" width="100%" [itemsMaxHeight]="130"
-                [data]="genres" [valueKey]="'type'" [displayKey]="'type'" [(ngModel)]="user.genres"
+                [data]="genres" [valueKey]="'type'" [displayKey]="'type'" formControlName="genres"
                 placeholder="Select your favorite genres" searchPlaceholder="Search..." required
                 [type]='"line"'>
             </igx-combo>
+        </div>
+        <div class="component-container">
+            <igx-radio-group name="status">
+                <igx-radio class="radio-sample" *ngFor="let status of statuses" value="{{status.value}}"
+                  formControlName="status" (change)="checkStatus($event)">
+                  {{status.label}}
+                </igx-radio>
+              </igx-radio-group>              
         </div>
         <div class="component-container">
             <igx-date-picker name="date" (onSelection)="onDateSelection($event)"></igx-date-picker>

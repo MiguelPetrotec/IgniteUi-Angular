@@ -18,6 +18,13 @@ export class InputGroupComponent implements OnInit {
     phone: ''
   };
 
+  public statuses =
+  [
+    { label: 'Active', value: 'ACTIVE' },
+    { label: 'Inactive', value: 'INACTIVE' },
+    { label: 'Blocked', value: 'BLOCKED' }
+  ];
+
   // Forms
   contactForm: FormGroup;
 
@@ -46,7 +53,8 @@ export class InputGroupComponent implements OnInit {
       fullName: new FormControl('', Validators.compose([Validators.required, this.noWhitespaceValidator])),
       genres: new FormControl('', Validators.compose([Validators.required, this.noWhitespaceValidator])),
       movie: new FormControl('', Validators.compose([Validators.required])),
-      phone: new FormControl('', Validators.compose([this.noWhitespaceValidator]))
+      phone: new FormControl('', Validators.compose([this.noWhitespaceValidator])),
+      status: new FormControl('ACTIVE', Validators.compose([Validators.required]))
     });
 
   }
@@ -86,5 +94,16 @@ export class InputGroupComponent implements OnInit {
 
   public onTimeSelection(event) {
     this.user.dateTime.setTime((event.newValue as Date).getTime());
+  }
+
+  checkStatus($event) {
+
+    // if (this.customerDataForm && this.customerDataForm.controls) {
+    //   if ($event.value !== 'BLOCKED') {
+    //     this.customerDataForm.controls.blockReason.disable();
+    //   } else {
+    //     this.customerDataForm.controls.blockReason.enable();
+    //   }
+    // }
   }
 }

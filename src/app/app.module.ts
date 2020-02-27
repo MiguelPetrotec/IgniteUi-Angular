@@ -7,7 +7,7 @@ import {
    IgxButtonModule, IgxCheckboxModule, IgxComboModule, IgxDatePickerModule, IgxBadgeModule, IgxToastModule,
    IgxDropDownModule, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxLayoutModule,
    IgxNavbarModule, IgxNavigationDrawerModule, IgxRippleModule, IgxSelectModule,
-   IgxTimePickerModule, IgxToggleModule, IgxSwitchModule, IgxTabsModule
+   IgxTimePickerModule, IgxToggleModule, IgxSwitchModule, IgxTabsModule, IgxRadioGroupDirective, IgxRadioModule
 } from 'igniteui-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -104,7 +104,8 @@ export function appInitializerFactory(injector: Injector) {
       IgxToastModule,
       IgxSwitchModule,
       IgxTabsModule,
-      OAuthModule
+      OAuthModule,
+      IgxRadioModule
    ],
    providers: [
       RemoteFilteringService,
