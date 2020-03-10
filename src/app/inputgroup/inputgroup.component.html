@@ -54,9 +54,9 @@
             </igx-combo>
         </div>
         <div class="component-container">
-            <igx-radio-group name="status">
+            <igx-radio-group name="status" formControlName="status">
                 <igx-radio class="radio-sample" *ngFor="let status of statuses" value="{{status.value}}"
-                  formControlName="status" (change)="checkStatus($event)">
+                   (change)="checkStatus($event)">
                   {{status.label}}
                 </igx-radio>
               </igx-radio-group>              
